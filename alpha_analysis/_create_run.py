@@ -112,6 +112,7 @@ class RunItem:
     def __init__(self, equ: Union[str, a5py.Ascot], 
                  path: Union[str, os.PathLike]=None,
                  suffix: str='',
+                 sim_name: str=None,
                  create: bool=False, **kwargs):
         """
         Initializes the RunItem instance with a given equilibrium.
@@ -153,9 +154,13 @@ class RunItem:
                     fn = os.path.basename(equ).split('.')[0] + suffix + '.h5'
                     a5src = a5py.Ascot(equ, create=False)
                 else:
+
                     is_equ = 'desc'
                     create = False  # The file is just created below.
-                    fn = os.path.basename(equ).split('.')[0] + suffix + '.h5'
+                    if sim_name:
+                        fn = sim_name + '.h5'
+                    else:
+                        fn = os.path.basename(equ).split('.')[0] + suffix + '.h5'
 
                     # We create the ASCOT input.
                     self.a5fn = os.path.join(path, fn) if path is not None else fn
@@ -170,20 +175,42 @@ class RunItem:
                     fraction_T = kwargs.get('fraction_T', 0.5)
                     nrho = kwargs.get('nrho', 1024)
                     Zeff = kwargs.get('Zeff', 1.0)
-                    
+                    wall_offset = kwargs.get('wall_offset', 0.0)
+                    fn_encircling = kwargs.get('fn_encircling', "")
+                    fn_shaping = kwargs.get('fn_shaping', "")
+
                     logger.info(f" >> Creating new ASCOT input from DESC file {equ}")
                     logger.info(f"    - nR = {nR}, nZ = {nZ}, nPhi = {nPhi}")
                     logger.info(f"    - Using stellarator symmetry: {stellsym}")
                     logger.info(f"    - Radial resolution= {L_radial}, Poloidal = {M_poloidal}")
                     logger.info(f"    - Tritium fraction = {fraction_T}, nrho = {nrho}")
                     logger.info(f"    - Zeff = {Zeff}")
-
-                    a5src.data.create_input('desc field', fn=equ, nphi=nPhi, nr=nR, nz=nZ,
+                    logger.info(f"    - Wall offset = {wall_offset}")
+                    logger.info(f"   - Path to encircling coil: {fn_encircling}")
+                    logger.info(f"   - Path to shaping coil: {fn_shaping}")
+                    
+                    # if encircling and shaping coils are provided, generate the desc field using B_coil + B_plasma method
+                    # with an extended bfield beyond lcfs if a wall_offset is provided
+                    if fn_encircling and fn_shaping: 
+                        a5src.data.create_input('desc_field_extended', fn=equ, 
+                                         fn_encircling = fn_encircling, fn_shaping = fn_shaping, 
+                                         nphi=nPhi, nr=nR, nz=nZ,
                                          waitingbar=waitingbar, L_radial=L_radial, 
                                          M_poloidal=M_poloidal,
-                                         use_stell_sym=stellsym)
-                    a5src.data.create_input('desc profiles', fn=equ, fraction_T=fraction_T, nrho=nrho, Zeff=Zeff)
-                    a5src.data.create_input("import_desc_lcfs_as_wall", fn=equ)
+                                         use_stell_sym=stellsym, wall_offset = wall_offset)
+                        a5src.data.create_input('desc profiles', fn=equ, fraction_T=fraction_T, nrho=nrho, Zeff=Zeff) # Will potentially have to create a new function for profiles beyond lcfs
+                        a5src.data.create_input("import_desc_conformal_offset_wall", fn=equ, wall_offset = wall_offset)
+
+                    #if encircling and shaping coils are not provided, calculate the bfield using standard desc compute up to the lcfs
+                    else:
+                        a5src.data.create_input('desc field', fn=equ, nphi=nPhi, nr=nR, nz=nZ,
+                                            waitingbar=waitingbar, L_radial=L_radial, 
+                                            M_poloidal=M_poloidal,
+                                            use_stell_sym=stellsym)
+                        a5src.data.create_input('desc profiles', fn=equ, fraction_T=fraction_T, nrho=nrho, Zeff=Zeff)
+                        a5src.data.create_input("import_desc_lcfs_as_wall", fn=equ)
+                        
+
         
         # We now create the ASCOT input.
         if create:
@@ -210,7 +237,7 @@ class RunItem:
         # Adding dummy inputs if they do not exist.
         _make_dummy_inputs(self.a5)
 
-    def run_afsi(self, nsymm: int=None, mode: str='magnetic',
+    def run_afsi(self, nsymm: int, mode: str='magnetic',
                  nR: int=101, nz: int=None,
                  nenergy: int=50, npitch: int=1, 
                  descfn: str=None,
@@ -267,10 +294,6 @@ class RunItem:
             raise ValueError(f" >> DESC input file {descfn} does not exist.")
         logger.info(f" >> Generating AFSI distribution function in {mode} mode.")
 
-        # We will override the nsymm value by reading from the ascot file.
-        self.a5.input_init(bfield=True)
-        nsymm = self.a5._sim.B_data.BSTS.nsymm * 2 # The 2 is the stellarator symmetry.
-
         # Computing the thermal velocity to set the energy grid.
         self.a5.input_init(plasma=True)
         pls = self.a5.data.plasma.active.read()['etemperature'].max() * unyt.eV
@@ -294,8 +317,8 @@ class RunItem:
             rho = np.linspace(1e-3, 0.99, nR)
 
             # We get the symmetry of the equilibrium.
-            phimax = 360.0 * unyt.deg 
-            
+            phimax = 360.0 / nsymm * unyt.deg
+
             self.a5.input_init(bfield=True, plasma=True)
             start_time = time.time()
             distHe, _ = self.a5.afsi.thermal_from_desc('DT_He4n', descfn=descfn, 
