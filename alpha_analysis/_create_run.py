@@ -889,7 +889,18 @@ class RunItem:
         new_run.afsi_distxi = self.afsi_distxi
 
         return new_run
-
+    
+    def prepare_poincare(self): 
+        """
+        Creates markers and options required to run poincare plots
+        Currently this does not take inputs and only sets up default Poincare run settings
+        """
+        self.a5.input_init(bfield=True)
+        self.a5.data.create_input("marker poincare", activate = True, desc="PNCR Poincare")
+        self.a5.input_free()
+        self.a5.data.create_input("options poincare", maxrho=True, activate=True, desc="PNCR Poincare")
+        return
+    
 def duplicate_run_with_new_options(pathin: str, pathout: str, 
                                    n: int=None, not_to_clone: str=None,
                                    **opts):
