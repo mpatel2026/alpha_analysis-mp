@@ -18,7 +18,7 @@ class Poincare:
     either with particles or using field line tracing with the ASCOT5 code.
     """
     def __init__(self, equ: str, nr: int=200, nz: int=200, nphi: int=320,
-                 prefix: str='ascot'):
+                 prefix: str='ascot', **kwargs):
         """
         Parameters
         ----------
@@ -39,6 +39,10 @@ class Poincare:
 
         self.a5fn = f'{prefix}_{nphi}.h5'
 
+        wall_offset = kwargs.get('wall_offset', 0.0)
+        fn_encircling = kwargs.get('fn_encircling', "")
+        fn_shaping = kwargs.get('fn_shaping', "")
+
         # We prepare the ASCOT5 equilibrium file.
         if os.path.exists(self.a5fn):
             logger.warning(f"Loading existing ASCOT5 file: {self.a5fn}")
@@ -47,9 +51,17 @@ class Poincare:
         else:
             self.a5 = a5py.Ascot(self.a5fn, create=True)
 
-            self.a5.data.create_input("desc field", fn=equ, nphi=nphi, nr=nr, nz=nz,
-                                      waitingbar=True, L_radial=4, M_poloidal=4,
-                                      use_stell_sym=True)
+            if fn_encircling and fn_shaping:
+                self.a5.data.create_input("desc_field_extended", fn=equ,
+                                        fn_encircling = fn_encircling, fn_shaping = fn_shaping,
+                                        nphi=nphi, nr=nr, nz=nz,
+                                        waitingbar=True, L_radial=4, M_poloidal=4,
+                                        use_stell_sym=True, wall_offset = wall_offset
+                                        )
+            else:    
+                self.a5.data.create_input("desc field", fn=equ, nphi=nphi, nr=nr, nz=nz,
+                                        waitingbar=True, L_radial=4, M_poloidal=4,
+                                        use_stell_sym=True)
             self.a5.data.create_input("plasma_1D")
             self.a5.data.create_input("wall_rectangular")
             self.a5.data.create_input("E_TC")
