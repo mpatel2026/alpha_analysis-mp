@@ -200,8 +200,8 @@ class RunItem:
                                          M_poloidal=M_poloidal,
                                          use_stell_sym=stellsym, wall_offset = wall_offset)
                         a5src.data.create_input('desc profiles', fn=equ, fraction_T=fraction_T, nrho=nrho, Zeff=Zeff) # Will potentially have to create a new function for profiles beyond lcfs
-                        #a5src.data.create_input("import_desc_conformal_offset_wall", fn=equ, wall_offset = wall_offset)
-                        a5src.data.create_input("import_desc_conformal_offset_wall", fn=equ, wall_offset = wall_offset, rescale_ntri = rescale_ntri)
+                        a5src.data.create_input("import_desc_lcfs_as_wall", fn=equ)
+                        #a5src.data.create_input("import_desc_conformal_offset_wall", fn=equ, wall_offset = wall_offset, rescale_ntri = rescale_ntri)
                         
                     #if encircling and shaping coils are not provided, calculate the bfield using standard desc compute up to the lcfs
                     else:
@@ -889,17 +889,6 @@ class RunItem:
         new_run.afsi_distxi = self.afsi_distxi
 
         return new_run
-    
-    def prepare_poincare(self): 
-        """
-        Creates markers and options required to run poincare plots
-        Currently this does not take inputs and only sets up default Poincare run settings
-        """
-        self.a5.input_init(bfield=True)
-        self.a5.data.create_input("marker poincare", activate = True, desc="PNCR Poincare")
-        self.a5.input_free()
-        self.a5.data.create_input("options poincare", maxrho=True, activate=True, desc="PNCR Poincare")
-        return
     
 def duplicate_run_with_new_options(pathin: str, pathout: str, 
                                    n: int=None, not_to_clone: str=None,
