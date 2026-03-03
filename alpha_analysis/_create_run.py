@@ -186,13 +186,15 @@ class RunItem:
                     logger.info(f"    - Radial resolution= {L_radial}, Poloidal = {M_poloidal}")
                     logger.info(f"    - Tritium fraction = {fraction_T}, nrho = {nrho}")
                     logger.info(f"    - Zeff = {Zeff}")
-                    logger.info(f"    - Wall offset = {wall_offset}")
-                    logger.info(f"   - Path to encircling coil: {fn_encircling}")
-                    logger.info(f"   - Path to shaping coil: {fn_shaping}")
-                    
+
                     # if encircling and shaping coils are provided, generate the desc field using B_coil + B_plasma method
                     # with an extended bfield beyond lcfs if a wall_offset is provided
                     if fn_encircling and fn_shaping: 
+                        logger.info(f"    - Wall offset = {wall_offset}")
+                        logger.info(f"    - Path to encircling coil: {fn_encircling}")
+                        logger.info(f"    - Path to shaping coil: {fn_shaping}")
+                        logger.info(f"    - Target cell area for wall mesh: {cell_area} m^2")
+                        
                         a5src.data.create_input('desc_field_extended', fn=equ, 
                                          fn_encircling = fn_encircling, fn_shaping = fn_shaping, 
                                          nphi=nPhi, nr=nR, nz=nZ,
