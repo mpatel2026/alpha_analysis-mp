@@ -178,7 +178,7 @@ class RunItem:
                     wall_offset = kwargs.get('wall_offset', 0.0)
                     fn_encircling = kwargs.get('fn_encircling', "")
                     fn_shaping = kwargs.get('fn_shaping', "")
-                    rescale_ntri = kwargs.get('rescale_ntri', 1)
+                    cell_area = kwargs.get('cell_area', 0.3)
 
                     logger.info(f" >> Creating new ASCOT input from DESC file {equ}")
                     logger.info(f"    - nR = {nR}, nZ = {nZ}, nPhi = {nPhi}")
@@ -200,8 +200,7 @@ class RunItem:
                                          M_poloidal=M_poloidal,
                                          use_stell_sym=stellsym, wall_offset = wall_offset)
                         a5src.data.create_input('desc profiles', fn=equ, fraction_T=fraction_T, nrho=nrho, Zeff=Zeff) # Will potentially have to create a new function for profiles beyond lcfs
-                        a5src.data.create_input("import_desc_lcfs_as_wall", fn=equ)
-                        #a5src.data.create_input("import_desc_conformal_offset_wall", fn=equ, wall_offset = wall_offset, rescale_ntri = rescale_ntri)
+                        a5src.data.create_input("import_desc_conformal_offset_wall", fn=equ, wall_offset = wall_offset, cell_area = cell_area)
                         
                     #if encircling and shaping coils are not provided, calculate the bfield using standard desc compute up to the lcfs
                     else:
