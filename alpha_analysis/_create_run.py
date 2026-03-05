@@ -178,7 +178,7 @@ class RunItem:
                     wall_offset = kwargs.get('wall_offset', 0.0)
                     fn_encircling = kwargs.get('fn_encircling', "")
                     fn_shaping = kwargs.get('fn_shaping', "")
-                    cell_area = kwargs.get('cell_area', 0.3)
+                    cell_area = kwargs.get('cell_area', 0.002)
 
                     logger.info(f" >> Creating new ASCOT input from DESC file {equ}")
                     logger.info(f"    - nR = {nR}, nZ = {nZ}, nPhi = {nPhi}")
