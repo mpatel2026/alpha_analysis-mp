@@ -194,14 +194,24 @@ class RunItem:
                         logger.info(f"    - Path to encircling coil: {fn_encircling}")
                         logger.info(f"    - Path to shaping coil: {fn_shaping}")
                         logger.info(f"    - Target cell area for wall mesh: {cell_area} m^2")
-                        
+
+                        #Calculate an extended field
                         a5src.data.create_input('desc_field_extended', fn=equ, 
                                          fn_encircling = fn_encircling, fn_shaping = fn_shaping, 
                                          nphi=nPhi, nr=nR, nz=nZ,
                                          waitingbar=waitingbar, L_radial=L_radial, 
                                          M_poloidal=M_poloidal,
                                          use_stell_sym=stellsym, wall_offset = wall_offset)
-                        a5src.data.create_input('desc profiles', fn=equ, fraction_T=fraction_T, nrho=nrho, Zeff=Zeff) # Will potentially have to create a new function for profiles beyond lcfs
+                        #From bfield data calculate rho at the extended psi boundary
+                        a5src.input_init(bfield=True)
+                        bfield_data = a5src.data.bfield.active.read()
+                        psi_sep = bfield_data['psi1']
+                        psi = bfield_data['psi']
+                        max_rho = np.sqrt(np.max(psi) / psi_sep)
+                        print(f'    - max rho = {max_rho}')
+            
+                        #calculate extended plasma profiles from desc and set an offset wall
+                        a5src.data.create_input('desc_profiles_extended', fn=equ, fraction_T=fraction_T, rhomax = max_rho, nrho=nrho, Zeff=Zeff)
                         a5src.data.create_input("import_desc_conformal_offset_wall", fn=equ, wall_offset = wall_offset, cell_area = cell_area)
                         
                     #if encircling and shaping coils are not provided, calculate the bfield using standard desc compute up to the lcfs
