@@ -179,6 +179,7 @@ class RunItem:
                     fn_encircling = kwargs.get('fn_encircling', "")
                     fn_shaping = kwargs.get('fn_shaping', "")
                     cell_area = kwargs.get('cell_area', 0.002)
+                    use_mixed_field = kwargs.get('use_mixed_field', False)
 
                     logger.info(f" >> Creating new ASCOT input from DESC file {equ}")
                     logger.info(f"    - nR = {nR}, nZ = {nZ}, nPhi = {nPhi}")
@@ -194,13 +195,13 @@ class RunItem:
                         logger.info(f"    - Path to encircling coil: {fn_encircling}")
                         logger.info(f"    - Path to shaping coil: {fn_shaping}")
                         logger.info(f"    - Target cell area for wall mesh: {cell_area} m^2")
-
+                        logger.info(f"    - Use mixed field (eq.compute + Biot-Savart): {use_mixed_field}")
                         #Calculate an extended field
                         a5src.data.create_input('desc_field_extended', fn=equ, 
                                          fn_encircling = fn_encircling, fn_shaping = fn_shaping, 
                                          nphi=nPhi, nr=nR, nz=nZ,
                                          waitingbar=waitingbar, L_radial=L_radial, 
-                                         M_poloidal=M_poloidal,
+                                         M_poloidal=M_poloidal, use_mixed_field = use_mixed_field,
                                          use_stell_sym=stellsym, wall_offset = wall_offset)
                         #From bfield data calculate rho at the extended psi boundary
                         a5src.input_init(bfield=True)
