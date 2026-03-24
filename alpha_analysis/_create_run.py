@@ -206,7 +206,10 @@ class RunItem:
                                          M_poloidal=M_poloidal, use_mixed_field = use_mixed_field,
                                          use_stell_sym=stellsym, wall_offset = wall_offset)   
                         #calculate extended plasma profiles from desc and set an offset wall
-                        a5src.data.create_input('desc_profiles_extended', fn=equ, fraction_T=fraction_T, sol_profile = sol_profile, nrho=nrho, Zeff=Zeff)
+                        if sol_profile == 'zero':
+                            a5src.data.create_input('desc profiles', fn=equ, fraction_T=fraction_T, nrho=nrho, Zeff=Zeff)
+                        else: 
+                            a5src.data.create_input('desc_profiles_extended', fn=equ, fraction_T=fraction_T, sol_profile = sol_profile, nrho=nrho, Zeff=Zeff)
                         a5src.data.create_input("import_desc_conformal_offset_wall", fn=equ, wall_offset = wall_offset, cell_area = cell_area)
                         
                     #if encircling and shaping coils are not provided, calculate the bfield using standard desc compute up to the lcfs
