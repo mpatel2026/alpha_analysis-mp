@@ -178,7 +178,7 @@ class RunItem:
                     wall_offset = kwargs.get('wall_offset', 0.0)
                     fn_encircling = kwargs.get('fn_encircling', "")
                     fn_shaping = kwargs.get('fn_shaping', "")
-                    cell_area = kwargs.get('cell_area', 0.002)
+                    cell_area = kwargs.get('cell_area', 0.02)
                     use_mixed_field = kwargs.get('use_mixed_field', False)
                     sol_profile = kwargs.get('sol_profile', 'decay')
 
