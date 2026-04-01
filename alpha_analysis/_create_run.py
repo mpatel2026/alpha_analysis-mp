@@ -180,7 +180,7 @@ class RunItem:
                     fn_shaping = kwargs.get('fn_shaping', "")
                     cell_area = kwargs.get('cell_area', 0.02)
                     use_mixed_field = kwargs.get('use_mixed_field', False)
-                    sol_profile = kwargs.get('sol_profile', 'decay')
+                    sol_profile = kwargs.get('sol_profile', 'zero')
 
                     logger.info(f" >> Creating new ASCOT input from DESC file {equ}")
                     logger.info(f"    - nR = {nR}, nZ = {nZ}, nPhi = {nPhi}")
