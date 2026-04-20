@@ -80,10 +80,6 @@ def _make_dummy_inputs(a5: a5py.Ascot):
     a5 : a5py.Ascot
         ASCOT instance where the dummy inputs will be created.
     """
-    if not hasattr(a5.data, "wall"):
-        a5.data.create_input("wall_rectangular")
-        logger.info(" >> Added unused wall")
-
     if not hasattr(a5.data, "efield"):
         a5.data.create_input("E_TC")
         # a5.data.create_input("E_TC", exyz=np.array([0,0,0]), activate=True, desc="Zero electric field")
@@ -165,7 +161,7 @@ class RunItem:
                     # We create the ASCOT input.
                     self.a5fn = os.path.join(path, fn) if path is not None else fn
                     a5src = a5py.Ascot(self.a5fn, create=True)
-                    nPhi = kwargs.get('nPhi', 100)
+                    nPhi = kwargs.get('nPhi', 200)
                     nR = kwargs.get('nR', 200)
                     nZ = kwargs.get('nZ', 200)
                     waitingbar = kwargs.get('waitingbar', True)
@@ -304,6 +300,10 @@ class RunItem:
         if mode.lower() == 'magnetic' and not os.path.isfile(descfn):
             raise ValueError(f" >> DESC input file {descfn} does not exist.")
         logger.info(f" >> Generating AFSI distribution function in {mode} mode.")
+
+        # We will override the nsymm value by reading from the ascot file.
+        self.a5.input_init(bfield=True)
+        nsymm = self.a5._sim.B_data.BSTS.Nperiods * 2 # The 2 is the stellarator symmetry.
 
         # Computing the thermal velocity to set the energy grid.
         self.a5.input_init(plasma=True)
@@ -747,8 +747,6 @@ class RunItem:
         total_dist_memory /= (1024.0**3)
         
         logger.info(f" >> Distribution functions enabled: {ndists_on}, total memory required: {total_dist_memory:.2f} GB.")
-        if total_dist_memory > 4.0:
-            logger.warning(f" >> Total distribution function memory exceeds 4.0 GB. You may expect MPI errors in communication...")
 
         # Writing the options.
         self.a5.data.create_input('opt', **self.opts, activate=True)
@@ -773,7 +771,7 @@ class RunItem:
             raise ValueError(f" >> Wall input file {fn} does not exist.")
         logger.info(f" >> Setting wall of type {wall_type} from file {fn}.")
         if wall_type.lower() == 'desc':
-            self.a5.data.create_input("wall desc", fn=fn, activate=True)
+            self.a5.data.create_input("import_desc_lcfs_as_wall", fn=fn, activate=True)
         elif wall_type.lower() == 'eqdsk':
             self.a5.data.create_input("wall eqdsk", fn=fn, activate=True)
         elif wall_type.lower() == 'stl':
