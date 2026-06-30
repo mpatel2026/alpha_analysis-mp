@@ -1,0 +1,1170 @@
+Starting ASCOT5 Task ID: 8
+Using Input File: G1600-free-reopt_I_10cm-wall_200k-mrk_biot-bfield_FLR-mode_CX_dist_decay-profile_04132026.h5
+Running on 10 nodes with 256 CPUs per task
+Initialized MPI, rank 1, size 10.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/G1600-free-reopt_I_10cm-wall_200k-mrk_biot-bfield_FLR-mode_CX_dist_decay-profile_04132026.h5.
+
+Reading options input.
+Active QID is 2456811422
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 0490190704
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.002 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+Active QID is 1162927243
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 1669767866
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+   1  /  3     1  /  3.016             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+[electrons]   -1  /  0.001             2.76e+20/5.50e+11                1.12e+04/2.22e-06       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 0627318526
+
+Initialized MPI, rank 3, size 10.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/G1600-free-reopt_I_10cm-wall_200k-mrk_biot-bfield_FLR-mode_CX_dist_decay-profile_04132026.h5.
+
+Reading options input.
+Active QID is 2456811422
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 0490190704
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.002 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+Initialized MPI, rank 2, size 10.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/G1600-free-reopt_I_10cm-wall_200k-mrk_biot-bfield_FLR-mode_CX_dist_decay-profile_04132026.h5.
+
+Reading options input.
+Active QID is 2456811422
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 0490190704
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.002 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 3070393824
+
+3D wall model (wall_3D)
+Number of wall elements 66096
+Spanning xmin = -10.002 m, xmax = 10.001 m
+         ymin = -9.272 m, ymax = 9.271 m
+         zmin = -3.598 m, zmax = 3.598 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 2782935522
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 4287686593
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2182488788
+
+Initialized MPI, rank 4, size 10.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/G1600-free-reopt_I_10cm-wall_200k-mrk_biot-bfield_FLR-mode_CX_dist_decay-profile_04132026.h5.
+
+Reading options input.
+Active QID is 2456811422
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 0490190704
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.002 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+Active QID is 1162927243
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 1669767866
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+   1  /  3     1  /  3.016             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+[electrons]   -1  /  0.001             2.76e+20/5.50e+11                1.12e+04/2.22e-06       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 0627318526
+
+Active QID is 1162927243
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 1669767866
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+   1  /  3     1  /  3.016             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+[electrons]   -1  /  0.001             2.76e+20/5.50e+11                1.12e+04/2.22e-06       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 0627318526
+
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 0688167738
+
+Loaded 200000 guiding centers.
+Marker data read and initialized.
+
+All input read and initialized.
+Simulation begins; 256 threads.
+Active QID is 1162927243
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 1669767866
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+   1  /  3     1  /  3.016             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+[electrons]   -1  /  0.001             2.76e+20/5.50e+11                1.12e+04/2.22e-06       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 0627318526
+
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 3070393824
+
+3D wall model (wall_3D)
+Number of wall elements 66096
+Spanning xmin = -10.002 m, xmax = 10.001 m
+         ymin = -9.272 m, ymax = 9.271 m
+         zmin = -3.598 m, zmax = 3.598 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 2782935522
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 4287686593
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2182488788
+
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 3070393824
+
+3D wall model (wall_3D)
+Number of wall elements 66096
+Spanning xmin = -10.002 m, xmax = 10.001 m
+         ymin = -9.272 m, ymax = 9.271 m
+         zmin = -3.598 m, zmax = 3.598 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 2782935522
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 4287686593
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2182488788
+
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 3070393824
+
+3D wall model (wall_3D)
+Number of wall elements 66096
+Spanning xmin = -10.002 m, xmax = 10.001 m
+         ymin = -9.272 m, ymax = 9.271 m
+         zmin = -3.598 m, zmax = 3.598 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 2782935522
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 4287686593
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2182488788
+
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 0688167738
+
+Loaded 200000 guiding centers.
+Marker data read and initialized.
+
+All input read and initialized.
+Simulation begins; 256 threads.
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 0688167738
+
+Loaded 200000 guiding centers.
+Marker data read and initialized.
+
+All input read and initialized.
+Simulation begins; 256 threads.
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 0688167738
+
+Loaded 200000 guiding centers.
+Marker data read and initialized.
+
+All input read and initialized.
+Simulation begins; 256 threads.
+Initialized MPI, rank 5, size 10.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/G1600-free-reopt_I_10cm-wall_200k-mrk_biot-bfield_FLR-mode_CX_dist_decay-profile_04132026.h5.
+
+Reading options input.
+Active QID is 2456811422
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 0490190704
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.002 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+Initialized MPI, rank 7, size 10.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/G1600-free-reopt_I_10cm-wall_200k-mrk_biot-bfield_FLR-mode_CX_dist_decay-profile_04132026.h5.
+
+Reading options input.
+Active QID is 2456811422
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 0490190704
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.002 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+Initialized MPI, rank 8, size 10.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/G1600-free-reopt_I_10cm-wall_200k-mrk_biot-bfield_FLR-mode_CX_dist_decay-profile_04132026.h5.
+
+Reading options input.
+Active QID is 2456811422
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 0490190704
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.002 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+Initialized MPI, rank 6, size 10.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/G1600-free-reopt_I_10cm-wall_200k-mrk_biot-bfield_FLR-mode_CX_dist_decay-profile_04132026.h5.
+
+Reading options input.
+Active QID is 2456811422
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 0490190704
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.002 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+Active QID is 1162927243
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 1669767866
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+   1  /  3     1  /  3.016             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+[electrons]   -1  /  0.001             2.76e+20/5.50e+11                1.12e+04/2.22e-06       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 0627318526
+
+Initialized MPI, rank 9, size 10.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/G1600-free-reopt_I_10cm-wall_200k-mrk_biot-bfield_FLR-mode_CX_dist_decay-profile_04132026.h5.
+
+Reading options input.
+Active QID is 2456811422
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 0490190704
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.002 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+Active QID is 1162927243
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 1669767866
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+   1  /  3     1  /  3.016             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+[electrons]   -1  /  0.001             2.76e+20/5.50e+11                1.12e+04/2.22e-06       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 0627318526
+
+Active QID is 1162927243
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 1669767866
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+   1  /  3     1  /  3.016             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+[electrons]   -1  /  0.001             2.76e+20/5.50e+11                1.12e+04/2.22e-06       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 0627318526
+
+Active QID is 1162927243
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 1669767866
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+   1  /  3     1  /  3.016             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+[electrons]   -1  /  0.001             2.76e+20/5.50e+11                1.12e+04/2.22e-06       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 0627318526
+
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 3070393824
+
+3D wall model (wall_3D)
+Number of wall elements 66096
+Spanning xmin = -10.002 m, xmax = 10.001 m
+         ymin = -9.272 m, ymax = 9.271 m
+         zmin = -3.598 m, zmax = 3.598 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 2782935522
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 4287686593
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2182488788
+
+Active QID is 1162927243
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 1669767866
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+   1  /  3     1  /  3.016             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+[electrons]   -1  /  0.001             2.76e+20/5.50e+11                1.12e+04/2.22e-06       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 0627318526
+
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 3070393824
+
+3D wall model (wall_3D)
+Number of wall elements 66096
+Spanning xmin = -10.002 m, xmax = 10.001 m
+         ymin = -9.272 m, ymax = 9.271 m
+         zmin = -3.598 m, zmax = 3.598 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 2782935522
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 4287686593
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2182488788
+
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 3070393824
+
+3D wall model (wall_3D)
+Number of wall elements 66096
+Spanning xmin = -10.002 m, xmax = 10.001 m
+         ymin = -9.272 m, ymax = 9.271 m
+         zmin = -3.598 m, zmax = 3.598 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 2782935522
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 4287686593
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2182488788
+
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 3070393824
+
+3D wall model (wall_3D)
+Number of wall elements 66096
+Spanning xmin = -10.002 m, xmax = 10.001 m
+         ymin = -9.272 m, ymax = 9.271 m
+         zmin = -3.598 m, zmax = 3.598 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 2782935522
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 4287686593
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2182488788
+
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 0688167738
+
+Loaded 200000 guiding centers.
+Marker data read and initialized.
+
+All input read and initialized.
+Simulation begins; 256 threads.
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 3070393824
+
+3D wall model (wall_3D)
+Number of wall elements 66096
+Spanning xmin = -10.002 m, xmax = 10.001 m
+         ymin = -9.272 m, ymax = 9.271 m
+         zmin = -3.598 m, zmax = 3.598 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 2782935522
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 4287686593
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2182488788
+
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 0688167738
+
+Loaded 200000 guiding centers.
+Marker data read and initialized.
+
+All input read and initialized.
+Simulation begins; 256 threads.
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 0688167738
+
+Loaded 200000 guiding centers.
+Marker data read and initialized.
+
+All input read and initialized.
+Simulation begins; 256 threads.
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 0688167738
+
+Loaded 200000 guiding centers.
+Marker data read and initialized.
+
+All input read and initialized.
+Simulation begins; 256 threads.
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 0688167738
+
+Loaded 200000 guiding centers.
+Marker data read and initialized.
+
+All input read and initialized.
+Simulation begins; 256 threads.
+ASCOT5_MAIN
+Tag 5.6.2-79-g9c291f5
+Branch conformal-walls
+
+Initialized MPI, rank 0, size 10.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/G1600-free-reopt_I_10cm-wall_200k-mrk_biot-bfield_FLR-mode_CX_dist_decay-profile_04132026.h5.
+
+Reading options input.
+Active QID is 2456811422
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 0490190704
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.338 m Rmax = 9.922 m
+      nz =  200 zmin = -3.518 m zmax = 3.518 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.002 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+Active QID is 1162927243
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 1669767866
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+   1  /  3     1  /  3.016             1.38e+20/2.75e+11                1.12e+04/2.22e-06       
+[electrons]   -1  /  0.001             2.76e+20/5.50e+11                1.12e+04/2.22e-06       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 0627318526
+
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 3070393824
+
+3D wall model (wall_3D)
+Number of wall elements 66096
+Spanning xmin = -10.002 m, xmax = 10.001 m
+         ymin = -9.272 m, ymax = 9.271 m
+         zmin = -3.598 m, zmax = 3.598 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 2782935522
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 4287686593
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2182488788
+
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 0688167738
+
+Loaded 200000 guiding centers.
+Marker data read and initialized.
+
+All input read and initialized.
+
+Initializing marker states.
+Estimated memory usage 0.2 MB.
+Marker states initialized.
+
+Preparing output.
+Note: Output file /pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/G1600-free-reopt_I_10cm-wall_200k-mrk_biot-bfield_FLR-mode_CX_dist_decay-profile_04132026.h5 is already present.
+
+The qid of this run is 0483235557
+
+Inistate written.
+Simulation begins; 256 threads.
+Simulation complete.
+Simulation complete.
+Simulation complete.
+Simulation complete.
+Simulation complete.
+Simulation complete.
+Simulation complete.
+Simulation complete.
+Simulation complete.
+Simulation complete.
+Simulation finished in 11451.359765 s
+Endstate written.
+
+Combining and writing diagnostics.
+
+Writing diagnostics output.
+
+Writing rho 5D distribution.
+
+Diagnostics output written.
+Diagnostics written.
+
+Summary of results:
+   180230 markers had end condition Thermalization
+    19597 markers had end condition Wall collision
+       75 markers had end condition Min energy
+       96 markers had end condition Min energy and Thermalization
+        2 markers had end condition Min energy and Wall collision
+
+          No markers were aborted.
+
+Done.

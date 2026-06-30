@@ -1,0 +1,3 @@
+Error: State could not be written.
+srun: error: nid004740: task 0: Segmentation fault
+srun: Terminating StepId=51560572.0

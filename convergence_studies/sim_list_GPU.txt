@@ -1,0 +1,15 @@
+G1600-free-reopt_I_10cm-wall_200k-mrk_biot-bfield_p01cellarea_FO-mode_alpha-power_03302026.h5
+G1600-free-reopt_I_10cm-wall_200k-mrk_mixed-bfield_p01cellarea_FO-mode_alpha-power_03302026.h5
+G1600-free-reopt_I_10cm-newwall_100k-mrk_biot-bfield_p01cellarea_FO-mode_zero-profile_alpha-power_04172026.h5
+G1600-free-reopt_I_10cm-newwall_100k-mrk_mixed-bfield_p01cellarea_FO-mode_zero-profile_alpha-power_04172026.h5
+G1600-free-reopt_I_engineeringwall_100k-mrk_biot-bfield_p01cellarea_FO-mode_decay-profile_05082026.h5
+G1600-free-reopt_I_engineeringwall_100k-mrk_biot-bfield_p01cellarea_FO-mode_zero-profile_05092026.h5
+G1600-free-reopt_I_engineeringwall_100k-mrk_biot-bfield_p01cellarea_FO-mode_flat-profile_05092026.h5
+G1600-free-reopt_I_30cm-wall_100k-mrk_biot-bfield_p01cellarea_FO-mode_zero-profile_05092026.h5
+G1600-free-reopt_I_30cm-wall_100k-mrk_biot-bfield_p01cellarea_FO-mode_flat-profile_05092026.h5
+G1600-free-reopt_I_30cm-wall_100k-mrk_biot-bfield_p01cellarea_FO-mode_decay-profile_05092026.h5
+G1600-fixed-FO.h5
+G1600-free-reopt_I_LCFS-wall_100k-mrk_mixed-bfield_p01cellarea_FO-mode_zero-profile_06112026.h5
+G1600-free-reopt_I_LCFS-wall_100k-mrk_biot-bfield_p01cellarea_FO-mode_zero-profile_06112026.h5
+restarting_from_biotsavart_lcfs-usingFO.h5
+

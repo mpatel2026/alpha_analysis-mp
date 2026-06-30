@@ -1,0 +1,17 @@
+Unloading the cpe module is insufficient to restore the system defaults.
+Please run 'source
+/opt/cray/pe/cpe/25.09/restore_lmod_system_defaults.[csh|sh]'. 
+ 
+Sourcing the above script is not necessary if swapping the cpe module with a
+different version. 
+Lmod has detected the following error: Cannot load module
+"craype-accel-nvidia80". At least one of these module(s) must be loaded:
+   atleast("cudatoolkit","11.0") atleast("cuda","11.0")
+
+While processing the following module(s):
+    Module fullname        Module Filename
+    ---------------        ---------------
+    craype-accel-nvidia80  /opt/cray/pe/lmod/modulefiles/craype-targets/default/craype-accel-nvidia80.lua
+
+[2026-04-17T22:42:12.935] error: *** STEP 51506466.0 ON nid001696 CANCELLED AT 2026-04-17T22:42:12 DUE TO TIME LIMIT ***
+[2026-04-17T22:42:12.935] error: *** JOB 51506466 ON nid001696 CANCELLED AT 2026-04-17T22:42:12 DUE TO TIME LIMIT ***
