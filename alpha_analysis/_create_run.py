@@ -33,6 +33,9 @@ from a5py.ascot5io.coreio.fileapi import INPUTGROUPS
 from a5py.physlib import parseunits
 from a5py.ascot5io.dist import DistData
 from a5py.ascot5io.options import Opt
+from a5py.routines.markergen import MarkerGenerator
+
+from functools import reduce
 
 # Other utils.
 from alpha_analysis import distrz2distrho, convert_flux_to_cylindrical
@@ -212,6 +215,7 @@ class RunItem:
                                 a5src.data.create_input("import_wall_vtk", fn = fn_wall)
                         else:
                             a5src.data.create_input("import_desc_conformal_offset_wall", fn=equ, wall_offset = wall_offset, cell_area = cell_area)
+                            #a5src.data.create_input("import_desc_conformal_offset_wall_angular", fn=equ, wall_offset = wall_offset, cell_area = cell_area)
                         
                     #if encircling and shaping coils are not provided, calculate the bfield using standard desc compute up to the lcfs
                     else:
@@ -353,7 +357,7 @@ class RunItem:
             Z = np.linspace(zmin, zmax, nz)
             phi = np.array([0.0, 360.0 / nsymm]) * unyt.deg
             spatial_grid = {'R': R, 'Z': Z, 'phi': phi}
-
+            start_time = time.time()
             distHe, _ = self.a5.afsi.thermal('DT_He4n',
                                     r=np.linspace(rmin, rmax, nR),
                                     z=np.linspace(zmin, zmax, nz),
@@ -361,14 +365,15 @@ class RunItem:
                                     ekin1=ekin1, pitch1=pitch1,
                                     ekin2=ekin2, pitch2=pitch2,
                                     nmc=nmc)
-            
+            end_time = time.time()
             # For consistency, we transform this distribution
             # from (R, z, E, pitch) to (rho, E, pitch)
             # TODO: How can we determine the phi angle to use here without the
             # symmetry info?
-            distHe_rho = distrz2distrho(self.a5, distHe,  rhomin=1e-3, rhoout=0.99, 
-                                        nrho=100, n_samples=1000, phi=2*np.pi/nsymm
-                                        )
+            #distHe_rho = distrz2distrho(self.a5, distHe,  rhomin=1e-3, rhoout=0.99, 
+            #                            nrho=100, n_samples=1000, phi=2*np.pi/nsymm
+            #                            )
+             
         
         # Building diagnostics.
         elapsed_time = end_time - start_time
@@ -376,24 +381,25 @@ class RunItem:
 
         self.afsi_dist = distHe
 
-        # Computing the marginal distributions in energy, pitch and rho. 
-        distrho = distHe.integrate(True, theta=np.s_[:], phi=np.s_[:], xi=np.s_[:],
-                                      ekin=np.s_[:], charge=np.s_[:], time=np.s_[:])
-        distekin = distHe.integrate(True, rho=np.s_[:], theta=np.s_[:], phi=np.s_[:],
-                                       xi=np.s_[:], charge=np.s_[:], time=np.s_[:])
-        distxi = distHe.integrate(True, rho=np.s_[:], theta=np.s_[:], phi=np.s_[:],
-                                     ekin=np.s_[:], charge=np.s_[:], time=np.s_[:])
-        self.afsi_distrho = distrho
-        self.afsi_distekin = distekin
-        self.afsi_distxi = distxi
+        if mode.lower() == 'magnetic':
+            # Computing the marginal distributions in energy, pitch and rho. 
+            distrho = distHe.integrate(True, theta=np.s_[:], phi=np.s_[:], xi=np.s_[:],
+                                        ekin=np.s_[:], charge=np.s_[:], time=np.s_[:])
+            distekin = distHe.integrate(True, rho=np.s_[:], theta=np.s_[:], phi=np.s_[:],
+                                        xi=np.s_[:], charge=np.s_[:], time=np.s_[:])
+            distxi = distHe.integrate(True, rho=np.s_[:], theta=np.s_[:], phi=np.s_[:],
+                                        ekin=np.s_[:], charge=np.s_[:], time=np.s_[:])
+            self.afsi_distrho = distrho
+            self.afsi_distekin = distekin
+            self.afsi_distxi = distxi
 
-        # computing the integrals as a diagnostic for the user.
-        distekin = distHe.integrate(True, rho=np.s_[:], theta=np.s_[:], phi=np.s_[:],
-                             xi=np.s_[:], charge=np.s_[:])
-        E = distekin._copy()
-        E._multiply(distekin.abscissa('ekin'), 'ekin')
-        N = E.integrate(True, ekin=np.s_[:])
-        logger.info(f" >> Total number of alphas in the distribution: {N._distribution.to('MW').value} MW")
+            # computing the integrals as a diagnostic for the user.
+            distekin = distHe.integrate(True, rho=np.s_[:], theta=np.s_[:], phi=np.s_[:],
+                                xi=np.s_[:], charge=np.s_[:])
+            E = distekin._copy()
+            E._multiply(distekin.abscissa('ekin'), 'ekin')
+            N = E.integrate(True, ekin=np.s_[:])
+            logger.info(f" >> Total number of alphas in the distribution: {N._distribution.to('MW').value} MW")
     
         return
     
@@ -407,6 +413,7 @@ class RunItem:
                         adaptive: bool=False, min_energy: float=None,
                         thermal_factor: float=None, enable_wall: bool=True,
                         flr_corrections: bool=True, adaptive_opts: dict=None,
+                        marker_hist: str=None, 
                         **dist_config):
         """
         Setup the markers for the run and prepare the options for the
@@ -443,6 +450,10 @@ class RunItem:
             Whether to enable wall collisions as an end condition.
         flr_corrections : bool
             Whether to enable FLR corrections for the markers.
+        marker_hist : str
+            Path to the numpy array file to use for the marker generation when using imported marker distribution
+        marker_edges : str
+            Path to the dictionary file containing the bin edges for the marker histograms
         **dist_config:
             Configuration options for the distribution function generation
             in ASCOT file. Refer to documentation for details.
@@ -468,8 +479,25 @@ class RunItem:
         # implemented in DESC.
         logger.info(f" >> Preparing {nmarkers} markers in {mode} mode.")
         if afsi_weighting:
-            markerdist = self.afsi_dist.integrate(True, charge=np.s_[:], time=np.s_[:])
-            particledist = markerdist
+            particledist = self.afsi_dist.integrate(True, charge=np.s_[:], time=np.s_[:])
+            if marker_hist is not None:
+                logger.info(f" >> Using AFSI distribution with loss sampling for marker generation.")
+                #read in marker_hist npy file and marker_edges npz file
+                hist_data = np.load(marker_hist, allow_pickle=True)
+                #normalize each array so that it integrates to equal 1
+                normalized_hist_data = np.array([arr / np.sum(arr) for arr in hist_data], dtype=object)
+                #Compute the 5D outer product using safe floating-point fractions first
+                prob_grid = reduce(np.multiply.outer, [np.asarray(hist, dtype=float) for hist in normalized_hist_data])
+
+                # Scale the final multidimensional grid by nmarkers
+                marker_hist = prob_grid * nmarkers
+
+                markerdist = DistData(marker_hist, phi=particledist.abscissa_edges("phi"), rho=particledist.abscissa_edges("rho"), 
+                                    theta = particledist.abscissa_edges("theta"),
+                                    ekin=particledist.abscissa_edges("ekin"), pitch=particledist.abscissa_edges("xi"))
+            else:
+                markerdist = particledist
+
         else:
             rho = np.linspace(1e-3, rhomax.value, 2) * unyt.dimensionless
             theta = np.linspace(0.0, 360.0, 2) * unyt.deg
@@ -483,7 +511,7 @@ class RunItem:
                 'theta': theta,
                 'phi': phi,
                 'ekin': energy,
-                'xi': pitch
+                'pitch': pitch
             }
             particledist = DistData(tmp, **abscissae)
             markerdist = particledist
@@ -512,22 +540,21 @@ class RunItem:
             weight = particledist.histogram().ravel()[icell] / counts[idx]
 
             # Reject based on the minweight
-            rejected = weight <= 0.0
+            rejected = weight <= 1.0
             ngen = np.sum(~rejected)
 
         # Shuffle markers just in case the order they were created is biased
         idx = np.arange(nmarkers)
         _rng.shuffle(idx)
         icell  = icell[idx]
-        weight = weight[idx].ravel()
-
-        # Init marker species
+        weight = weight[idx].ravel()      
+        
         mrk = a5py.ascot5io.Marker.generate(mode, n=nmarkers)
+        mrk["weight"][:] = weight
         mrk["anum"][:]   = 4
         mrk["znum"][:]   = 2
         mrk["mass"][:]   = 4.002602 * unyt.amu
         mrk["charge"][:] = 2.0 * unyt.e
-        mrk["weight"][:] = weight
         mrk["time"][:]   = 0.0 * unyt.s
 
         # Randomize initial 
@@ -552,7 +579,7 @@ class RunItem:
         ic3 = list_indices[idx]
         idx = order.index('ekin')
         ip1 = list_indices[idx]
-        idx = order.index('xi')
+        idx = order.index('pitch')
         ip2 = list_indices[idx]
 
         rhos   = randomize(markerdist.abscissa_edges("rho"),   ic1)
@@ -569,7 +596,7 @@ class RunItem:
 
         # We now generate the velocities.
         ekin = randomize(markerdist.abscissa_edges("ekin"), ip1)
-        xi   = randomize(markerdist.abscissa_edges("xi"),   ip2)
+        xi   = randomize(markerdist.abscissa_edges("pitch"),   ip2)
         gyrophase = _rng.random(nmarkers,) * 2.0 * np.pi # Random gyrophase.
 
         if mode.lower() == 'gc':
