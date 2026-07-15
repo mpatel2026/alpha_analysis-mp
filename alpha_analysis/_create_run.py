@@ -495,8 +495,10 @@ class RunItem:
                 markerdist = DistData(marker_hist, phi=particledist.abscissa_edges("phi"), rho=particledist.abscissa_edges("rho"), 
                                     theta = particledist.abscissa_edges("theta"),
                                     ekin=particledist.abscissa_edges("ekin"), pitch=particledist.abscissa_edges("xi"))
+                pitch_str = "pitch"
             else:
                 markerdist = particledist
+                pitch_str = "xi"
 
         else:
             rho = np.linspace(1e-3, rhomax.value, 2) * unyt.dimensionless
@@ -513,14 +515,15 @@ class RunItem:
                 'ekin': energy,
                 'pitch': pitch
             }
+            pitch_str = "pitch"
             particledist = DistData(tmp, **abscissae)
             markerdist = particledist
             logger.info(f" >> Generating uniform distribution for markers.")
 
         # Number of markers successfully generated
-        ngen      = 0
+        ngen   = 0
         # Cell indices of generated markers
-        icell     = np.zeros((nmarkers,), dtype="i8")
+        icell  = np.zeros((nmarkers,), dtype="i8")
         
         _rng = np.random.default_rng()
         # Generate a number random for each marker, and when that marker is put
@@ -579,7 +582,7 @@ class RunItem:
         ic3 = list_indices[idx]
         idx = order.index('ekin')
         ip1 = list_indices[idx]
-        idx = order.index('pitch')
+        idx = order.index(pitch_str)
         ip2 = list_indices[idx]
 
         rhos   = randomize(markerdist.abscissa_edges("rho"),   ic1)
@@ -596,7 +599,7 @@ class RunItem:
 
         # We now generate the velocities.
         ekin = randomize(markerdist.abscissa_edges("ekin"), ip1)
-        xi   = randomize(markerdist.abscissa_edges("pitch"),   ip2)
+        xi   = randomize(markerdist.abscissa_edges(pitch_str),   ip2)
         gyrophase = _rng.random(nmarkers,) * 2.0 * np.pi # Random gyrophase.
 
         if mode.lower() == 'gc':

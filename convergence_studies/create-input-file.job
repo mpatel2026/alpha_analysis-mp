@@ -41,12 +41,12 @@ WALL_NAME="divertor_with_targets.vtk"
 
 SIM_NAME="restarting_from_biotsavart_lcfs-usingFO"
 NMRK=10000
-SIMMODE='prt'
+SIMMODE='gc'
 CELL_AREA=0.01
 USE_MIXED_FIELD=False
 FPP=958.0
 SOL_PROFILE="decay"
-WALL_OFFSET=100
+WALL_OFFSET=10
 COLLECT_DIST=False
 
 # Engineering Wall Input

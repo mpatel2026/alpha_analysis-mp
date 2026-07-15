@@ -93,7 +93,7 @@ def plot_walload(fn, name, fig=None):
     
     mappable = im if im is not None else ax.collections[0]
     cbar = fig.colorbar(mappable, cax=cax)
-    cbar.set_label(r"$P_{cell}$ [W/m$^2$]")
+    cbar.set_label(r"$P_{surface}$ [W/m$^2$]")
 
     # Explicitly avoid plt.tight_layout() as it resets the manual gridspec spacing
     fig.subplots_adjust(right=0.88, left=0.1, wspace=0.05)
