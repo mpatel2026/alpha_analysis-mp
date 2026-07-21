@@ -1,12 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=create_inputs
+#SBATCH --job-name=create_input
+#SBATCH --output=prep-logs/slurm-%j.out
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=64
-#SBATCH --time=0:10:00
-#SBATCH --constraint=cpu
-#SBATCH --qos=debug
-#SBATCH --account=m4477
+#SBATCH --ntasks=1             # 1 parallel task
+#SBATCH --time=0:30:00
+#SBATCH --qos=stellar-debug    # Stellar debug queue (max 30 min)
 #SBATCH --mail-type=begin,end,fail
 #SBATCH --mail-user=mpatel26@thea.energy
 
@@ -14,9 +12,9 @@
 # This tricks JAX into seeing 64 independent devices on the CPU
 export XLA_FLAGS="--xla_force_host_platform_device_count=64 --xla_cpu_multi_thread_eigen=true"
 
-export OMP_NUM_THREADS=64
-export MKL_NUM_THREADS=64
-export NUMBA_NUM_THREADS=64
+export OMP_NUM_THREADS=96
+export MKL_NUM_THREADS=96
+export NUMBA_NUM_THREADS=96
 # 2. JAX Precision and Backend behavior
 export JAX_ENABLE_X64=True
 export JAX_PLATFORMS=cpu
@@ -24,33 +22,15 @@ export XLA_PYTHON_CLIENT_PREALLOCATE=false
 
 # 3. Environment Setup
 module purge
-module load python
-
+module load anaconda3/2024.6
 
 source $(conda info --base)/etc/profile.d/conda.sh
 conda activate ascot-develop-mp
 
-INP_DIR="/pscratch/sd/m/mpatel26/equil/Eos10-std/"
-OUT_DIR="/pscratch/sd/m/mpatel26/ascot_h5s/Eos10-std/"
 
-EQUIL_NAME="EP-trappedresonance-ex.h5"
-ENCIRCLING_NAME="coils_Eos10_std_001_EC_XY6xyz.h5"
-SHAPING_NAME="coils_Eos10_std_002-opt23_SC_R0xyz_asym.h5"
+PARAMS="alphaprep-params.json"
 
-SIM_NAME="ascot_EP_trappedresonance_fixed"
-NMRK=10000
-SIMMODE='gc'
-CELL_AREA=0.01
-USE_MIXED_FIELD=False
-FPP=958.0
-SOL_PROFILE="zero"
-WALL_OFFSET=5
-COLLECT_DIST=False
+#srun -n 1 -c 64 --cpu-bind=cores python -u create-input.py --params=$PARAMS
+srun -n 1 -c 64 --cpu-bind=cores python -u create-input-NoStellSym.py --params=$PARAMS
 
-#srun -n 1 -c 64 --cpu-bind=cores python -u create-input.py --sim_name=$SIM_NAME --simmode=$SIMMODE --wall_offset=$WALL_OFFSET --cell_area=$CELL_AREA --inp_dir=$INP_DIR --out_dir=$OUT_DIR --nmrk=$NMRK --equil_name=$EQUIL_NAME --encircling_name=$ENCIRCLING_NAME --shaping_name=$SHAPING_NAME --rescale_FPP=$FPP --use_mixed_field=$USE_MIXED_FIELD --sol_profile=$SOL_PROFILE --collect_dist=$COLLECT_DIST
-#srun -n 1 -c 64 --cpu-bind=cores python -u create-input-NoStellSym.py --sim_name=$SIM_NAME --simmode=$SIMMODE --wall_offset=$WALL_OFFSET --cell_area=$CELL_AREA --inp_dir=$INP_DIR --out_dir=$OUT_DIR --nmrk=$NMRK --equil_name=$EQUIL_NAME --encircling_name=$ENCIRCLING_NAME --shaping_name=$SHAPING_NAME --rescale_FPP=$FPP --use_mixed_field=$USE_MIXED_FIELD --sol_profile=$SOL_PROFILE --collect_dist=$COLLECT_DIST
-
-srun -n 1 -c 64 --cpu-bind=cores python -u create-input.py --sim_name=$SIM_NAME --simmode=$SIMMODE --wall_offset=$WALL_OFFSET --cell_area=$CELL_AREA --inp_dir=$INP_DIR --out_dir=$OUT_DIR --nmrk=$NMRK --equil_name=$EQUIL_NAME --rescale_FPP=$FPP --use_mixed_field=$USE_MIXED_FIELD --sol_profile=$SOL_PROFILE --collect_dist=$COLLECT_DIST
-
-#srun -n 1 -c 64 --cpu-bind=cores python -u set_mrk.py --sim_name=$SIM_NAME --equil_name=$EQUIL_NAME --inp_dir=$INP_DIR --out_dir=$OUT_DIR
-srun -n 1 -c 64 --cpu-bind=cores python -u set_field.py --sim_name=$SIM_NAME --equil_name=$EQUIL_NAME --inp_dir=$INP_DIR --out_dir=$OUT_DIR
+srun -n 1 -c 64 --cpu-bind=cores python -u set_field.py --params=$PARAMS
