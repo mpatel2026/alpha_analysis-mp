@@ -1,0 +1,16 @@
+{
+  "inp_dir": "/scratch/gpfs/mp3096/equil/Eos10-std/",
+  "out_dir": "/scratch/gpfs/mp3096/ascot_h5s/Eos10-std/",
+  "equil_file": "equil_Eos10_G2000_DESC_R325_B50_P12MWbroader_25cmSC_1p45packing_10cmXpt_1500Bxdl_1p5Wself_divClaimV5_longerECs_free_attempt5.h5",
+  "EC_file": "coils_Eos10_G2000_DESC_R325_B50_P12MWbroader_25cmSC_1p45packing_10cmXpt_1500Bxdl_1p5Wself_divClaimV5_longerECs_EC_attempt5.h5",
+  "SC_file": "coils_Eos10_G2000_DESC_R325_B50_P12MWbroader_25cmSC_1p45packing_10cmXpt_1500Bxdl_1p5Wself_divClaimV5_longerECs_SC_rank00_final_attempt5.h5",
+  "cell_area":0.01,
+  "wall_offset":5, 
+  "sim_name": "ascot_Eos10-std003_attempt5",
+  "nmrk": 10000,
+  "simmode": "gc",
+  "use_mixed_field": false,
+  "FPP_power": 958,
+  "SOL_profile": "zero",
+  "collect_dist": false
+}

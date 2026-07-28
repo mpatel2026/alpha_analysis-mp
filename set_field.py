@@ -11,19 +11,34 @@ import desc.io as dscio
 import desc.grid as dscg
 
 import argparse 
+import json
 
-# Step 2: Set up the argument parser
-parser = argparse.ArgumentParser(description="Run ASCOT simulation for a specific sim name.")
-parser.add_argument('--sim_name', type=str, required=True, help='The name of the simulation to process')
-parser.add_argument("--inp_dir", type=str, default='/pscratch/sd/m/mpatel26/equil/')
-parser.add_argument("--out_dir", type=str, default='/pscratch/sd/m/mpatel26/ascot_h5s/')
-parser.add_argument("--equil_name", type=str, default="equil_Eos10_G3213_DESC_R325_B50_P12MWbroader_constJe_1p5Wself_free.h5")
-# Step 3: Parse the arguments
+# 1. Set up the Argument Parser to only take the JSON parameters file
+parser = argparse.ArgumentParser(description="Create input for Alpha Analysis simulations from a JSON config.")
+parser.add_argument("--params", type=str, required=True, help="Path to the JSON configuration file")
 args = parser.parse_args()
-simname = args.sim_name
-inp_dir = args.inp_dir
-out_dir = args.out_dir
-equil_name = args.equil_name
+
+# 2. Load and parse the JSON file
+with open(args.params, "r") as f:
+    config = json.load(f)
+
+# Extract required parameters with default fallbacks
+inp_dir = config.get("inp_dir", None)
+out_dir = config.get("out_dir", None)
+equil_name = config.get("equil_file")
+encircling_name = config.get("EC_file", None)
+shaping_name = config.get("SC_file", None)
+simname = config["sim_name"]  # Required
+
+nmrk = config.get("nmrk")
+wall_offset = config.get("wall_offset", None)
+cell_area = config.get("cell_area", None)
+rescale_FPP = config.get("FPP_power", None)
+use_mixed_field = config.get("use_mixed_field", False)
+collect_dist = config.get("collect_dist", False)
+sol_profile = config.get("SOL_profile", None)
+simmode = config.get("simmode", "gc")
+wall_file = config.get("wall_file", None)
 
 fn = inp_dir + "equil_G1600_DESC_fixed.h5"
 fam = dscio.load(fn, file_format="hdf5")

@@ -3,6 +3,7 @@
 #SBATCH --output=prep-logs/slurm-%j.out
 #SBATCH --nodes=1
 #SBATCH --ntasks=1             # 1 parallel task
+#SBATCH --cpus-per-task=96
 #SBATCH --time=0:30:00
 #SBATCH --qos=stellar-debug    # Stellar debug queue (max 30 min)
 #SBATCH --mail-type=begin,end,fail
@@ -28,9 +29,9 @@ source $(conda info --base)/etc/profile.d/conda.sh
 conda activate ascot-develop-mp
 
 
-PARAMS="alphaprep-params.json"
+PARAMS="alphaprep-params/std003_attempt6.json"
 
-#srun -n 1 -c 64 --cpu-bind=cores python -u create-input.py --params=$PARAMS
-srun -n 1 -c 64 --cpu-bind=cores python -u create-input-NoStellSym.py --params=$PARAMS
+srun -n 1 -c 96 --cpu-bind=cores python -u create-input.py --params=$PARAMS
+#srun -n 1 -c 96 --cpu-bind=cores python -u create-input-NoStellSym.py --params=$PARAMS
 
-srun -n 1 -c 64 --cpu-bind=cores python -u set_field.py --params=$PARAMS
+srun -n 1 -c 96 --cpu-bind=cores python -u set_field.py --params=$PARAMS
