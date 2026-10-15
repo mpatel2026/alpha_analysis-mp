@@ -4,3 +4,9 @@
 __pycache__/
 *.egg-info/
 no_sync/
+# Run outputs / large data (kept on disk, not tracked)
+/logs/
+/prep-logs/
+*.vtk
+beam-markers/*.json
+fusion_rates/data/triton_markers/

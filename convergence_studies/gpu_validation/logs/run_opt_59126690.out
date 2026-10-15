@@ -1,0 +1,9 @@
+Input: /pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/ISHW/G1600-free-reopt_I-engwall-LCFSmark1M_biot-bfield_p01cellarea_FO-mode_zero-profile_09302026.h5
+Binary: /global/homes/m/mpatel26/ascot5/ascot5_developed_mp_hpc_GPU_optimized/variants/ascot5_main.opt, 40 ranks on 10 nodes
+Simulation time per process: min 23752.6 s (rank 33), mean 25066.0 s, max 27286.0 s (rank 36)
+Simulation finished in 27285.612679 s
+   180025 markers had end condition Thermalization
+   819958 markers had end condition Wall collision
+       17 markers had end condition Min energy
+          No markers were aborted.
+Total ascot5_main wall time: 27297 s

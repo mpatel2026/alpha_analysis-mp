@@ -1,0 +1,7 @@
+Simulation time per process: min 2386.4 s (rank 4), mean 2457.8 s, max 2497.2 s (rank 6)
+Simulation finished in 2497.112109 s
+   179624 markers had end condition Thermalization
+    20376 markers had end condition Wall collision
+          No markers were aborted.
+Total ascot5_main wall time: 2503 s
+Output: /pscratch/sd/m/mpatel26/gpu_validation/runs/g1600_200k_300ms_bench_opt_59122650.h5

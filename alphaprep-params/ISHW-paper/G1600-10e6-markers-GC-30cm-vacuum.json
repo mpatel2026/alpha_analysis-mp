@@ -1,0 +1,16 @@
+{
+    "inp_dir": "/pscratch/sd/m/mpatel26/equil/",
+    "out_dir": "/pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/ISHW/",
+    "equil_file": "equil_Helios_G1600-12-89_QA2e-1_Bxdl25_free_L12_M12_N20.h5",
+    "sim_name": "G1600-free-reopt_I_30cm_1M-mrk_biot-bfield_p01cellarea_FLR-mode_zero-profile_10072026",
+    "EC_file" : "encircling_G1600-12-89_QA2e-1_Bxdl25.h5",
+    "SC_file" : "shaping_G1600-12-89_QA2e-1_Bxdl25.h5",
+    "wall_offset": 30.0,
+    "cell_area": 0.01,
+    "nmrk": 1000000,
+    "simmode": "gc",
+    "use_mixed_field": false,
+    "FPP_power": 958.0,
+    "SOL_profile": "zero",
+    "collect_dist": false
+  }

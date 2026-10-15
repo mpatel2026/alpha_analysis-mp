@@ -141,6 +141,12 @@ class RunItem:
             in case equ is a DESC input file. See ASCOT templates for help.        
         """
 
+        # Detect whether this process has a GPU available so that the options
+        # written by prepare_markers() can be kept GPU-legal.
+        from alpha_analysis._device import detect_device
+        self.device = detect_device()
+        logger.info(f" >> Detected device: {self.device}")
+
         # We need to distinguish between the different types of input.
         if isinstance(equ, a5py.Ascot):
             a5src = equ # Already an ASCOT instance.
@@ -783,10 +789,46 @@ class RunItem:
         
         logger.info(f" >> Distribution functions enabled: {ndists_on}, total memory required: {total_dist_memory:.2f} GB.")
 
+        # Make sure the options are legal for the target device.
+        self._enforce_gpu_options()
+
         # Writing the options.
         self.a5.data.create_input('opt', **self.opts, activate=True)
         logger.info(f" >> Marker and option preparations completed.")
         return
+
+    def _enforce_gpu_options(self):
+        """
+        Force off any simulation option that the GPU build of ascot5_main
+        does not support (see simulate.c: it exit(1)s on these under #ifdef
+        GPU). No-op on CPU. Options already unset are left untouched.
+        """
+        if self.device != 'gpu':
+            return
+
+        gpu_illegal = {
+            'ENABLE_ICRH': 0,
+            'RECORD_MODE': 0,
+            'ENABLE_ATOMIC': 0,
+            'ENABLE_TRANSCOEF': 0,
+            'ENABLE_MHD': 0,
+            'ENABLE_ORBITWRITE': 0,
+        }
+        for key, legal_value in gpu_illegal.items():
+            if key not in self.opts:
+                continue
+            if self.opts[key] != legal_value:
+                logger.warning(
+                    f" >> Option {key}={self.opts[key]} is not supported by "
+                    f"the GPU build. Forcing {key}={legal_value}."
+                )
+                self.opts[key] = legal_value
+
+        if self.opts.get('SIM_MODE') not in (1, 2):
+            raise ValueError(
+                f" >> SIM_MODE={self.opts.get('SIM_MODE')} is not supported "
+                "on GPU. Only GO (1) and GC (2) mode are ported."
+            )
 
     def set_wall(self, fn: str, wall_type: str='desc'):
         """

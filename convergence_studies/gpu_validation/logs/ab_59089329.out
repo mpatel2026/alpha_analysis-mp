@@ -1,0 +1,8 @@
+Variant       sim time [s]   output
+base-minfo     724.541282   /pscratch/sd/m/mpatel26/gpu_validation/runs/gc20k_10ms_base-minfo_59089329.h5
+legacy         461.848662   /pscratch/sd/m/mpatel26/gpu_validation/runs/gc20k_10ms_legacy_59089329.h5
+s12            460.039922   /pscratch/sd/m/mpatel26/gpu_validation/runs/gc20k_10ms_s12_59089329.h5
+opt            333.707334   /pscratch/sd/m/mpatel26/gpu_validation/runs/gc20k_10ms_opt_59089329.h5
+
+Compare with e.g.:
+  python compare_runs.py /pscratch/sd/m/mpatel26/gpu_validation/runs/gc20k_10ms_base-minfo_59089329.h5 <other output> [--bitwise]

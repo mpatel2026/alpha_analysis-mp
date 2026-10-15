@@ -1,0 +1,836 @@
+Rank 2 on nid003756: node-local rank 2/4, using GPU 0 of 1 visible (CUDA_VISIBLE_DEVICES=0)
+Initialized MPI, rank 2, size 4.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/gpu_validation/runs/lcfs_fo100k_300ms_bench_opt_59125235.h5.
+
+Reading options input.
+Active QID is 1413611697
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 1907657136
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.458 m Rmax = 9.802 m
+      nz =  200 zmin = -3.398 m zmax = 3.398 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.458 m Rmax = 9.802 m
+      nz =  200 zmin = -3.398 m zmax = 3.398 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.001 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+Active QID is 2157966389
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 0243017197
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/5.00e+14                1.12e+04/1.00e+00       
+   1  /  3     1  /  3.016             1.38e+20/5.00e+14                1.12e+04/1.00e+00       
+[electrons]   -1  /  0.001             2.76e+20/1.00e+15                1.12e+04/1.00e+00       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 3060014705
+
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 1407686568
+
+3D wall model (wall_3D)
+Number of wall elements 65522
+Spanning xmin = -9.901 m, xmax = 9.903 m
+         ymin = -9.173 m, ymax = 9.172 m
+         zmin = -3.499 m, zmax = 3.499 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 0553329641
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 2133645359
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2395880573
+
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 3795944271
+
+Loaded 100000 particles.
+Marker data read and initialized.
+
+All input read and initialized.
+Simulation begins; 1 threads.
+Rank 0 on nid003756: node-local rank 0/4, using GPU 0 of 1 visible (CUDA_VISIBLE_DEVICES=0)
+ASCOT5_MAIN
+Tag v1-95-g6147351-dirty
+Branch gpu-multinode-a100
+
+Initialized MPI, rank 0, size 4.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/gpu_validation/runs/lcfs_fo100k_300ms_bench_opt_59125235.h5.
+
+Reading options input.
+Active QID is 1413611697
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 1907657136
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.458 m Rmax = 9.802 m
+      nz =  200 zmin = -3.398 m zmax = 3.398 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.458 m Rmax = 9.802 m
+      nz =  200 zmin = -3.398 m zmax = 3.398 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.001 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+Active QID is 2157966389
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 0243017197
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/5.00e+14                1.12e+04/1.00e+00       
+   1  /  3     1  /  3.016             1.38e+20/5.00e+14                1.12e+04/1.00e+00       
+[electrons]   -1  /  0.001             2.76e+20/1.00e+15                1.12e+04/1.00e+00       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 3060014705
+
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 1407686568
+
+3D wall model (wall_3D)
+Number of wall elements 65522
+Spanning xmin = -9.901 m, xmax = 9.903 m
+         ymin = -9.173 m, ymax = 9.172 m
+         zmin = -3.499 m, zmax = 3.499 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 0553329641
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 2133645359
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2395880573
+
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 3795944271
+
+Loaded 100000 particles.
+Marker data read and initialized.
+
+All input read and initialized.
+
+Initializing marker states.
+Estimated memory usage 0.2 MB.
+Marker states initialized.
+
+Preparing output.
+Note: Output file /pscratch/sd/m/mpatel26/gpu_validation/runs/lcfs_fo100k_300ms_bench_opt_59125235.h5 is already present.
+
+The qid of this run is 0818893332
+
+Inistate written.
+Simulation begins; 1 threads.
+Rank 1 on nid003756: node-local rank 1/4, using GPU 0 of 1 visible (CUDA_VISIBLE_DEVICES=0)
+Initialized MPI, rank 1, size 4.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/gpu_validation/runs/lcfs_fo100k_300ms_bench_opt_59125235.h5.
+
+Reading options input.
+Active QID is 1413611697
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 1907657136
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.458 m Rmax = 9.802 m
+      nz =  200 zmin = -3.398 m zmax = 3.398 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.458 m Rmax = 9.802 m
+      nz =  200 zmin = -3.398 m zmax = 3.398 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.001 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+Active QID is 2157966389
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 0243017197
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/5.00e+14                1.12e+04/1.00e+00       
+   1  /  3     1  /  3.016             1.38e+20/5.00e+14                1.12e+04/1.00e+00       
+[electrons]   -1  /  0.001             2.76e+20/1.00e+15                1.12e+04/1.00e+00       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 3060014705
+
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 1407686568
+
+3D wall model (wall_3D)
+Number of wall elements 65522
+Spanning xmin = -9.901 m, xmax = 9.903 m
+         ymin = -9.173 m, ymax = 9.172 m
+         zmin = -3.499 m, zmax = 3.499 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 0553329641
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 2133645359
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2395880573
+
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 3795944271
+
+Loaded 100000 particles.
+Marker data read and initialized.
+
+All input read and initialized.
+Simulation begins; 1 threads.
+Rank 3 on nid003756: node-local rank 3/4, using GPU 0 of 1 visible (CUDA_VISIBLE_DEVICES=0)
+Initialized MPI, rank 3, size 4.
+
+Reading and initializing input.
+
+Input file is /pscratch/sd/m/mpatel26/gpu_validation/runs/lcfs_fo100k_300ms_bench_opt_59125235.h5.
+
+Reading options input.
+Active QID is 1413611697
+Options read and initialized.
+
+Reading magnetic field input.
+Active QID is 1907657136
+
+Stellarator magnetic field (B_STS)
+Psi-grid: nR =  200 Rmin = 5.458 m Rmax = 9.802 m
+      nz =  200 zmin = -3.398 m zmax = 3.398 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+B-grid: nR =  200 Rmin = 5.458 m Rmax = 9.802 m
+      nz =  200 zmin = -3.398 m zmax = 3.398 m
+nphi =   50 phimin = -8.780 deg phimax = 98.780 deg
+Psi at magnetic axis (phi=0) (9.065 m, 0.000 m)
+0.001 (evaluated)
+0.000 (given)
+Magnetic field on axis:
+B_R = -0.000 B_phi = 6.001 B_z = -0.894
+Stellarator with 2 periods.
+Stellarator symmetry enabled: assuming the grid is a half-period.
+Magnetic field read and initialized.
+
+Reading electric field input.
+Active QID is 2157966389
+
+Trivial Cartesian electric field (E_TC)
+E_x = 0.000000e+00, E_y = 0.000000e+00, E_z = 0.000000e+00
+Electric field read and initialized.
+
+Reading plasma input.
+Active QID is 0243017197
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 2
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             1.38e+20/5.00e+14                1.12e+04/1.00e+00       
+   1  /  3     1  /  3.016             1.38e+20/5.00e+14                1.12e+04/1.00e+00       
+[electrons]   -1  /  0.001             2.76e+20/1.00e+15                1.12e+04/1.00e+00       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Plasma data read and initialized.
+
+Reading neutral input.
+Active QID is 3060014705
+
+1D neutral density and temperature (N0_1D)
+Grid:  nrho =    3   rhomin = 0.000   rhomax = 2.000
+ Number of neutral species = 1
+Species Z/A   (Maxwellian)
+        1/  1 (1)    
+Neutral data read and initialized.
+
+Reading wall input.
+Active QID is 1407686568
+
+3D wall model (wall_3D)
+Number of wall elements 65522
+Spanning xmin = -9.901 m, xmax = 9.903 m
+         ymin = -9.173 m, ymax = 9.172 m
+         zmin = -3.499 m, zmax = 3.499 m
+Wall data read and initialized.
+
+Reading boozer input.
+Active QID is 0553329641
+
+Boozer input
+psi grid: n =    6 min = 0.000 max = 1.000
+thetageo grid: n =   18
+thetabzr grid: n =   10
+Boozer data read and initialized.
+
+Reading MHD input.
+Active QID is 2133645359
+
+MHD (stationary) input
+Grid: nrho =    6 rhomin = 0.000 rhomax = 1.000
+
+Modes:
+(n,m) = ( 1, 3) Amplitude = 0.1 Frequency =   1 Phase =   0
+(n,m) = ( 2, 4) Amplitude =   2 Frequency = 1.5 Phase = 0.785
+MHD data read and initialized.
+
+Reading atomic reaction input.
+Active QID is 2395880573
+
+Found data for 1 atomic reactions:
+Reaction number / Total number of reactions = 1 / 1
+  Reactant species Z_1 / A_1, Z_2 / A_2     = 0 / 0, 0 / 0
+  Min/Max energy                            = 1.00e+03 / 1.00e+04
+  Min/Max density                           = 1.00e+18 / 1.00e+20
+  Min/Max temperature                       = 1.00e+03 / 1.00e+04
+  Number of energy grid points              = 3
+  Number of density grid points             = 4
+  Number of temperature grid points         = 5
+Atomic reaction data read and initialized.
+
+Reading marker input.
+Active QID is 3795944271
+
+Loaded 100000 particles.
+Marker data read and initialized.
+
+All input read and initialized.
+Simulation begins; 1 threads.
+Rank 0: 24488/25000 markers running, 600.0 s elapsed
+Rank 2: 24894/25000 markers running, 600.0 s elapsed
+Rank 1: 24959/25000 markers running, 600.0 s elapsed
+Rank 3: 23279/25000 markers running, 600.0 s elapsed
+Rank 0: 24111/25000 markers running, 1200.0 s elapsed
+Rank 2: 24752/25000 markers running, 1200.0 s elapsed
+Rank 1: 24888/25000 markers running, 1200.0 s elapsed
+Rank 3: 22791/25000 markers running, 1200.0 s elapsed
+Rank 0: 23765/25000 markers running, 1800.0 s elapsed
+Rank 2: 24612/25000 markers running, 1800.0 s elapsed
+Rank 1: 24823/25000 markers running, 1800.0 s elapsed
+Rank 3: 22438/25000 markers running, 1800.0 s elapsed
+Rank 0: 23469/25000 markers running, 2400.0 s elapsed
+Rank 2: 24484/25000 markers running, 2400.0 s elapsed
+Rank 1: 24749/25000 markers running, 2400.0 s elapsed
+Rank 3: 22157/25000 markers running, 2400.0 s elapsed
+Rank 0: 23226/25000 markers running, 3000.0 s elapsed
+Rank 2: 24356/25000 markers running, 3000.0 s elapsed
+Rank 1: 24666/25000 markers running, 3000.0 s elapsed
+Rank 3: 21907/25000 markers running, 3000.0 s elapsed
+Rank 0: 22964/25000 markers running, 3600.0 s elapsed
+Rank 2: 24238/25000 markers running, 3600.0 s elapsed
+Rank 1: 24586/25000 markers running, 3600.0 s elapsed
+Rank 3: 21695/25000 markers running, 3600.0 s elapsed
+Rank 0: 22733/25000 markers running, 4200.0 s elapsed
+Rank 2: 24111/25000 markers running, 4200.0 s elapsed
+Rank 1: 24498/25000 markers running, 4200.0 s elapsed
+Rank 3: 21527/25000 markers running, 4200.0 s elapsed
+Rank 0: 22525/25000 markers running, 4800.0 s elapsed
+Rank 2: 24010/25000 markers running, 4800.0 s elapsed
+Rank 1: 24423/25000 markers running, 4800.0 s elapsed
+Rank 3: 21386/25000 markers running, 4800.0 s elapsed
+Rank 0: 22368/25000 markers running, 5400.0 s elapsed
+Rank 2: 23921/25000 markers running, 5400.0 s elapsed
+Rank 1: 24355/25000 markers running, 5400.0 s elapsed
+Rank 3: 21244/25000 markers running, 5400.0 s elapsed
+Rank 0: 22211/25000 markers running, 6000.0 s elapsed
+Rank 2: 23825/25000 markers running, 6000.0 s elapsed
+Rank 1: 24272/25000 markers running, 6000.0 s elapsed
+Rank 3: 21116/25000 markers running, 6000.0 s elapsed
+Rank 0: 22049/25000 markers running, 6600.0 s elapsed
+Rank 2: 23748/25000 markers running, 6600.0 s elapsed
+Rank 1: 24216/25000 markers running, 6600.0 s elapsed
+Rank 3: 21010/25000 markers running, 6600.0 s elapsed
+Rank 0: 21884/25000 markers running, 7200.0 s elapsed
+Rank 2: 23681/25000 markers running, 7200.0 s elapsed
+Rank 1: 24147/25000 markers running, 7200.0 s elapsed
+Rank 3: 20914/25000 markers running, 7200.0 s elapsed
+Rank 0: 21748/25000 markers running, 7800.0 s elapsed
+Rank 2: 23597/25000 markers running, 7800.0 s elapsed
+Rank 1: 24070/25000 markers running, 7800.0 s elapsed
+Rank 3: 20802/25000 markers running, 7800.0 s elapsed
+Rank 0: 21622/25000 markers running, 8400.0 s elapsed
+Rank 2: 23523/25000 markers running, 8400.0 s elapsed
+Rank 1: 24005/25000 markers running, 8400.0 s elapsed
+Rank 3: 20700/25000 markers running, 8400.0 s elapsed
+Rank 0: 21494/25000 markers running, 9000.0 s elapsed
+Rank 2: 23458/25000 markers running, 9000.0 s elapsed
+Rank 1: 23941/25000 markers running, 9000.0 s elapsed
+Rank 3: 20603/25000 markers running, 9000.0 s elapsed
+Rank 0: 21394/25000 markers running, 9600.0 s elapsed
+Rank 2: 23384/25000 markers running, 9600.0 s elapsed
+Rank 1: 23875/25000 markers running, 9600.0 s elapsed
+Rank 3: 20532/25000 markers running, 9600.0 s elapsed
+Rank 0: 21293/25000 markers running, 10200.0 s elapsed
+Rank 2: 23323/25000 markers running, 10200.0 s elapsed
+Rank 1: 23810/25000 markers running, 10200.0 s elapsed
+Rank 3: 20449/25000 markers running, 10200.0 s elapsed
+Rank 0: 21203/25000 markers running, 10800.0 s elapsed
+Rank 2: 23259/25000 markers running, 10800.0 s elapsed
+Rank 1: 23749/25000 markers running, 10800.0 s elapsed
+Rank 3: 20367/25000 markers running, 10800.0 s elapsed
+Rank 0: 21105/25000 markers running, 11400.0 s elapsed
+Rank 2: 23200/25000 markers running, 11400.0 s elapsed
+Rank 1: 23687/25000 markers running, 11400.1 s elapsed
+Rank 3: 20295/25000 markers running, 11400.0 s elapsed
+Rank 0: 20992/25000 markers running, 12000.0 s elapsed
+Rank 2: 23134/25000 markers running, 12000.1 s elapsed
+Rank 1: 23617/25000 markers running, 12000.1 s elapsed
+Rank 3: 20228/25000 markers running, 12000.1 s elapsed
+Rank 0: 20902/25000 markers running, 12600.0 s elapsed
+Rank 2: 23064/25000 markers running, 12600.1 s elapsed
+Rank 1: 23570/25000 markers running, 12600.1 s elapsed
+Rank 3: 20167/25000 markers running, 12600.1 s elapsed
+Rank 0: 20818/25000 markers running, 13200.0 s elapsed
+Rank 2: 22998/25000 markers running, 13200.1 s elapsed
+Rank 3: 20104/25000 markers running, 13200.1 s elapsed
+Rank 1: 23512/25000 markers running, 13200.1 s elapsed
+Rank 0: 20733/25000 markers running, 13800.0 s elapsed
+Rank 2: 22952/25000 markers running, 13800.1 s elapsed
+Rank 3: 20042/25000 markers running, 13800.1 s elapsed
+Rank 1: 23451/25000 markers running, 13800.1 s elapsed
+Rank 0: 20657/25000 markers running, 14400.0 s elapsed
+Rank 2: 22906/25000 markers running, 14400.1 s elapsed
+Rank 3: 19990/25000 markers running, 14400.1 s elapsed
+Rank 1: 23398/25000 markers running, 14400.1 s elapsed
+Rank 0: 20572/25000 markers running, 15000.0 s elapsed
+Rank 2: 22857/25000 markers running, 15000.1 s elapsed
+Rank 3: 19937/25000 markers running, 15000.1 s elapsed
+Rank 1: 23344/25000 markers running, 15000.1 s elapsed
+Rank 0: 20495/25000 markers running, 15600.0 s elapsed
+Rank 2: 22811/25000 markers running, 15600.1 s elapsed
+Rank 3: 19872/25000 markers running, 15600.1 s elapsed
+Rank 1: 23297/25000 markers running, 15600.1 s elapsed
+Rank 0: 20412/25000 markers running, 16200.0 s elapsed
+Rank 2: 22760/25000 markers running, 16200.1 s elapsed
+Rank 3: 19810/25000 markers running, 16200.1 s elapsed
+Rank 1: 23234/25000 markers running, 16200.1 s elapsed
+Rank 0: 20344/25000 markers running, 16800.0 s elapsed
+Rank 3: 19763/25000 markers running, 16800.1 s elapsed
+Rank 2: 22709/25000 markers running, 16800.1 s elapsed
+Rank 1: 23184/25000 markers running, 16800.1 s elapsed
+Rank 0: 20261/25000 markers running, 17400.0 s elapsed
+Rank 3: 19725/25000 markers running, 17400.1 s elapsed
+Rank 2: 22673/25000 markers running, 17400.1 s elapsed
+Rank 1: 23130/25000 markers running, 17400.1 s elapsed
+Rank 0: 20198/25000 markers running, 18000.0 s elapsed
+Rank 3: 19677/25000 markers running, 18000.1 s elapsed
+Rank 2: 22636/25000 markers running, 18000.1 s elapsed
+Rank 1: 23099/25000 markers running, 18000.1 s elapsed
+Rank 0: 20138/25000 markers running, 18600.0 s elapsed
+Rank 3: 19625/25000 markers running, 18600.1 s elapsed
+Rank 2: 22599/25000 markers running, 18600.1 s elapsed
+Rank 1: 23061/25000 markers running, 18600.1 s elapsed
+Rank 0: 20077/25000 markers running, 19200.0 s elapsed
+Rank 3: 19588/25000 markers running, 19200.1 s elapsed
+Rank 2: 22550/25000 markers running, 19200.1 s elapsed
+Rank 1: 23025/25000 markers running, 19200.1 s elapsed
+Rank 0: 20027/25000 markers running, 19800.1 s elapsed
+Rank 3: 19553/25000 markers running, 19800.1 s elapsed
+Rank 2: 22512/25000 markers running, 19800.1 s elapsed
+Rank 1: 22988/25000 markers running, 19800.1 s elapsed
+Rank 0: 19967/25000 markers running, 20400.1 s elapsed
+Rank 3: 19509/25000 markers running, 20400.1 s elapsed
+Rank 2: 22460/25000 markers running, 20400.1 s elapsed
+Rank 1: 22947/25000 markers running, 20400.1 s elapsed
+Rank 0: 19910/25000 markers running, 21000.1 s elapsed
+Rank 3: 19457/25000 markers running, 21000.1 s elapsed
+Rank 2: 22421/25000 markers running, 21000.1 s elapsed
+Rank 1: 22896/25000 markers running, 21000.1 s elapsed
+Rank 0: 19847/25000 markers running, 21600.1 s elapsed
+Rank 3: 19417/25000 markers running, 21600.1 s elapsed
+Rank 2: 22384/25000 markers running, 21600.1 s elapsed
+Rank 1: 22852/25000 markers running, 21600.1 s elapsed
+Rank 0: 19789/25000 markers running, 22200.1 s elapsed
+Rank 3: 19373/25000 markers running, 22200.1 s elapsed
+Rank 2: 22343/25000 markers running, 22200.1 s elapsed
+Rank 1: 22803/25000 markers running, 22200.1 s elapsed
+Rank 0: 19746/25000 markers running, 22800.1 s elapsed
+Rank 3: 19323/25000 markers running, 22800.1 s elapsed
+Rank 2: 22304/25000 markers running, 22800.1 s elapsed
+Rank 1: 22757/25000 markers running, 22800.1 s elapsed
+Rank 0: 19689/25000 markers running, 23400.1 s elapsed
+Rank 3: 19285/25000 markers running, 23400.1 s elapsed
+Rank 2: 22274/25000 markers running, 23400.1 s elapsed
+Rank 1: 22719/25000 markers running, 23400.1 s elapsed
+Rank 0: 19634/25000 markers running, 24000.1 s elapsed
+Rank 3: 19240/25000 markers running, 24000.1 s elapsed
+Rank 2: 22239/25000 markers running, 24000.1 s elapsed
+Rank 1: 22682/25000 markers running, 24000.1 s elapsed
+Rank 0: 19575/25000 markers running, 24600.1 s elapsed
+Rank 3: 19181/25000 markers running, 24600.1 s elapsed
+Rank 2: 22207/25000 markers running, 24600.1 s elapsed
+Rank 1: 22640/25000 markers running, 24600.1 s elapsed
+Rank 0: 19516/25000 markers running, 25200.1 s elapsed
+Rank 3: 19125/25000 markers running, 25200.1 s elapsed
+Rank 2: 22173/25000 markers running, 25200.1 s elapsed
+Rank 1: 22604/25000 markers running, 25200.1 s elapsed
+Rank 0: 19456/25000 markers running, 25800.1 s elapsed
+Rank 3: 19060/25000 markers running, 25800.1 s elapsed
+Rank 2: 22142/25000 markers running, 25800.1 s elapsed
+Rank 1: 22563/25000 markers running, 25800.1 s elapsed
+Rank 0: 19389/25000 markers running, 26400.1 s elapsed
+Rank 3: 18991/25000 markers running, 26400.1 s elapsed
+Rank 2: 22113/25000 markers running, 26400.1 s elapsed
+Rank 1: 22527/25000 markers running, 26400.1 s elapsed
+Rank 0: 19327/25000 markers running, 27000.1 s elapsed
+Rank 3: 18896/25000 markers running, 27000.1 s elapsed
+Rank 2: 22082/25000 markers running, 27000.1 s elapsed
+Rank 1: 22500/25000 markers running, 27000.1 s elapsed
+Rank 0: 19258/25000 markers running, 27600.1 s elapsed
+Rank 3: 18770/25000 markers running, 27600.1 s elapsed
+Rank 2: 22044/25000 markers running, 27600.1 s elapsed
+Rank 1: 22472/25000 markers running, 27600.1 s elapsed
+Rank 0: 19189/25000 markers running, 28200.1 s elapsed
+Rank 3: 18640/25000 markers running, 28200.1 s elapsed
+Rank 2: 22015/25000 markers running, 28200.1 s elapsed
+Rank 1: 22440/25000 markers running, 28200.1 s elapsed
+Rank 0: 19098/25000 markers running, 28800.1 s elapsed
+Rank 3: 18469/25000 markers running, 28800.1 s elapsed
+Rank 2: 21987/25000 markers running, 28800.1 s elapsed
+Rank 1: 22396/25000 markers running, 28800.1 s elapsed
+Rank 0: 18992/25000 markers running, 29400.1 s elapsed
+Rank 3: 18275/25000 markers running, 29400.1 s elapsed
+Rank 2: 21954/25000 markers running, 29400.1 s elapsed
+Rank 1: 22342/25000 markers running, 29400.1 s elapsed
+Rank 0: 18863/25000 markers running, 30000.1 s elapsed
+Rank 3: 18034/25000 markers running, 30000.1 s elapsed
+Rank 2: 21922/25000 markers running, 30000.1 s elapsed
+Rank 1: 22297/25000 markers running, 30000.1 s elapsed
+Rank 0: 18688/25000 markers running, 30600.1 s elapsed
+Rank 3: 17749/25000 markers running, 30600.1 s elapsed
+Rank 2: 21882/25000 markers running, 30600.1 s elapsed
+Rank 1: 22245/25000 markers running, 30600.1 s elapsed
+Rank 0: 18475/25000 markers running, 31200.1 s elapsed
+Rank 3: 17393/25000 markers running, 31200.1 s elapsed
+Rank 2: 21826/25000 markers running, 31200.1 s elapsed
+Rank 1: 22189/25000 markers running, 31200.1 s elapsed
+Rank 0: 18179/25000 markers running, 31800.1 s elapsed
+Rank 3: 17011/25000 markers running, 31800.1 s elapsed
+Rank 2: 21770/25000 markers running, 31800.1 s elapsed
+Rank 1: 22109/25000 markers running, 31800.1 s elapsed
+Rank 0: 17832/25000 markers running, 32400.1 s elapsed
+Rank 3: 16520/25000 markers running, 32400.1 s elapsed
+Rank 2: 21689/25000 markers running, 32400.1 s elapsed
+Rank 1: 22013/25000 markers running, 32400.1 s elapsed
+Rank 0: 17420/25000 markers running, 33000.1 s elapsed
+Rank 3: 15965/25000 markers running, 33000.1 s elapsed
+Rank 2: 21574/25000 markers running, 33000.1 s elapsed
+Rank 1: 21855/25000 markers running, 33000.1 s elapsed
+Rank 0: 16904/25000 markers running, 33600.1 s elapsed
+Rank 3: 15286/25000 markers running, 33600.1 s elapsed
+Rank 2: 21431/25000 markers running, 33600.1 s elapsed
+Rank 1: 21694/25000 markers running, 33600.1 s elapsed
+Rank 0: 16288/25000 markers running, 34200.1 s elapsed
+Rank 3: 14583/25000 markers running, 34200.1 s elapsed
+Rank 2: 21248/25000 markers running, 34200.1 s elapsed
+Rank 1: 21499/25000 markers running, 34200.1 s elapsed
+Rank 0: 15560/25000 markers running, 34800.1 s elapsed
+Rank 3: 13780/25000 markers running, 34800.1 s elapsed
+Rank 2: 21034/25000 markers running, 34800.1 s elapsed
+Rank 1: 21225/25000 markers running, 34800.2 s elapsed
+Rank 0: 14675/25000 markers running, 35400.1 s elapsed
+Rank 3: 12850/25000 markers running, 35400.1 s elapsed
+Rank 2: 20756/25000 markers running, 35400.1 s elapsed
+Rank 1: 20881/25000 markers running, 35400.2 s elapsed
+Rank 0: 13630/25000 markers running, 36000.1 s elapsed
+Rank 3: 11838/25000 markers running, 36000.1 s elapsed
+Rank 2: 20387/25000 markers running, 36000.2 s elapsed
+Rank 1: 20427/25000 markers running, 36000.2 s elapsed
+Rank 0: 12499/25000 markers running, 36600.1 s elapsed
+Rank 3: 10709/25000 markers running, 36600.1 s elapsed
+Rank 2: 19912/25000 markers running, 36600.2 s elapsed
+Rank 1: 19890/25000 markers running, 36600.2 s elapsed
+Rank 0: 11274/25000 markers running, 37200.1 s elapsed
+Rank 3: 9559/25000 markers running, 37200.1 s elapsed
+Rank 2: 19357/25000 markers running, 37200.2 s elapsed
+Rank 1: 19263/25000 markers running, 37200.2 s elapsed
+Rank 0: 10024/25000 markers running, 37800.1 s elapsed
+Rank 3: 8373/25000 markers running, 37800.1 s elapsed
+Rank 2: 18632/25000 markers running, 37800.2 s elapsed
+Rank 1: 18464/25000 markers running, 37800.2 s elapsed
+Rank 0: 8710/25000 markers running, 38400.1 s elapsed
+Rank 3: 7246/25000 markers running, 38400.1 s elapsed
+Rank 2: 17836/25000 markers running, 38400.2 s elapsed
+Rank 1: 17504/25000 markers running, 38400.2 s elapsed
+Rank 0: 7381/25000 markers running, 39000.1 s elapsed
+Rank 3: 6089/25000 markers running, 39000.1 s elapsed
+Rank 2: 16813/25000 markers running, 39000.2 s elapsed
+Rank 1: 16432/25000 markers running, 39000.2 s elapsed
+Rank 0: 6070/25000 markers running, 39600.1 s elapsed
+Rank 3: 4925/25000 markers running, 39600.1 s elapsed
+Rank 2: 15702/25000 markers running, 39600.2 s elapsed
+Rank 1: 15190/25000 markers running, 39600.2 s elapsed
+Rank 0: 4911/25000 markers running, 40200.1 s elapsed
+Rank 3: 3908/25000 markers running, 40200.1 s elapsed
+Rank 2: 14570/25000 markers running, 40200.2 s elapsed
+Rank 1: 13899/25000 markers running, 40200.2 s elapsed
+Rank 0: 3800/25000 markers running, 40800.1 s elapsed
+Rank 3: 3027/25000 markers running, 40800.1 s elapsed
+Rank 2: 13250/25000 markers running, 40800.2 s elapsed
+Rank 1: 12439/25000 markers running, 40800.2 s elapsed
+Rank 0: 2904/25000 markers running, 41400.1 s elapsed
+Rank 3: 2231/25000 markers running, 41400.1 s elapsed
+Rank 2: 11803/25000 markers running, 41400.2 s elapsed
+Rank 1: 10891/25000 markers running, 41400.2 s elapsed
+Rank 0: 2114/25000 markers running, 42000.1 s elapsed
+Rank 3: 1543/25000 markers running, 42000.1 s elapsed
+Rank 2: 10355/25000 markers running, 42000.2 s elapsed
+Rank 1: 9395/25000 markers running, 42000.2 s elapsed
+Rank 0: 1471/25000 markers running, 42600.1 s elapsed
+Rank 3: 1030/25000 markers running, 42600.1 s elapsed
+Rank 2: 8877/25000 markers running, 42600.2 s elapsed
+Rank 1: 7986/25000 markers running, 42600.2 s elapsed
+Rank 0: 991/25000 markers running, 43200.1 s elapsed
+Rank 3: 663/25000 markers running, 43200.1 s elapsed
+Rank 2: 7421/25000 markers running, 43200.2 s elapsed
+Rank 1: 6657/25000 markers running, 43200.2 s elapsed
+Rank 0: 586/25000 markers running, 43800.1 s elapsed
+Rank 3: 358/25000 markers running, 43800.1 s elapsed
+Rank 2: 6053/25000 markers running, 43800.2 s elapsed
+Rank 1: 5294/25000 markers running, 43800.2 s elapsed
+Rank 0: 322/25000 markers running, 44400.1 s elapsed
+Rank 3: 166/25000 markers running, 44400.1 s elapsed
+Rank 2: 4765/25000 markers running, 44400.2 s elapsed
+Rank 1: 4091/25000 markers running, 44400.2 s elapsed
+Rank 0: 159/25000 markers running, 45000.1 s elapsed
+Rank 3: 67/25000 markers running, 45000.1 s elapsed
+Rank 2: 3660/25000 markers running, 45000.2 s elapsed
+Rank 1: 3065/25000 markers running, 45000.2 s elapsed
+Rank 0: 68/25000 markers running, 45600.1 s elapsed
+Rank 3: 37/25000 markers running, 45600.1 s elapsed
+Rank 2: 2763/25000 markers running, 45600.2 s elapsed
+Rank 1: 2221/25000 markers running, 45600.2 s elapsed
+Rank 0: 35/25000 markers running, 46200.1 s elapsed
+Rank 3: 15/25000 markers running, 46200.1 s elapsed
+Rank 2: 1958/25000 markers running, 46200.2 s elapsed
+Rank 1: 1591/25000 markers running, 46200.2 s elapsed
+Rank 0: 10/25000 markers running, 46800.1 s elapsed
+Rank 3: 7/25000 markers running, 46800.1 s elapsed
+Rank 2: 1329/25000 markers running, 46800.2 s elapsed
+Rank 1: 1051/25000 markers running, 46800.2 s elapsed
+Rank 3: 0/25000 markers running, 47370.1 s elapsed (finished)
+Rank 0: 4/25000 markers running, 47400.1 s elapsed
+Rank 2: 849/25000 markers running, 47400.2 s elapsed
+Rank 1: 633/25000 markers running, 47400.2 s elapsed
+Rank 0: 2/25000 markers running, 48000.1 s elapsed
+Rank 2: 494/25000 markers running, 48000.2 s elapsed
+Rank 1: 366/25000 markers running, 48000.2 s elapsed
+Rank 0: 2/25000 markers running, 48600.1 s elapsed
+Rank 2: 246/25000 markers running, 48600.2 s elapsed
+Rank 1: 166/25000 markers running, 48600.2 s elapsed
+Rank 0: 0/25000 markers running, 48949.4 s elapsed (finished)
+Rank 2: 104/25000 markers running, 49200.2 s elapsed
+Rank 1: 84/25000 markers running, 49200.2 s elapsed
+Rank 2: 35/25000 markers running, 49800.2 s elapsed
+Rank 1: 38/25000 markers running, 49800.2 s elapsed
+Rank 2: 18/25000 markers running, 50400.2 s elapsed
+Rank 1: 20/25000 markers running, 50400.2 s elapsed
+Rank 2: 7/25000 markers running, 51000.2 s elapsed
+Rank 1: 7/25000 markers running, 51000.2 s elapsed
+Rank 2: 4/25000 markers running, 51600.2 s elapsed
+Rank 1: 2/25000 markers running, 51600.2 s elapsed
+Rank 2: 2/25000 markers running, 52200.2 s elapsed
+Rank 1: 2/25000 markers running, 52200.2 s elapsed
+Rank 1: 0/25000 markers running, 52492.6 s elapsed (finished)
+Rank 2: 2/25000 markers running, 52800.2 s elapsed
+Rank 2: 0/25000 markers running, 52991.2 s elapsed (finished)
+Simulation complete.
+Simulation complete.
+Simulation complete.
+Simulation time per process: min 47371.0 s (rank 3), mean 50451.7 s, max 52992.0 s (rank 2)
+Simulation finished in 52991.991028 s
+Endstate written.
+
+Combining and writing diagnostics.
+
+Writing diagnostics output.
+
+Diagnostics output written.
+Diagnostics written.
+
+Summary of results:
+    81060 markers had end condition Thermalization
+     6375 markers had end condition Aborted
+    12565 markers had end condition Wall collision
+
+     6260 markers were aborted with an error message:
+          Input evaluation yields unphysical results (something could be wrong with the input)
+          at line  267 in B_field.c
+      101 markers were aborted with an error message:
+          Input evaluation failed (marker could be outside input data grid)
+          at line  458 in B_STS.c
+       14 markers were aborted with an error message:
+          Input evaluation failed (marker could be outside input data grid)
+          at line  515 in B_STS.c
+
+Done.
+Simulation complete.

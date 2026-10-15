@@ -1,0 +1,13 @@
+{
+  "use_stell_sym": true,
+  "inp_dir": "/pscratch/sd/m/mpatel26/equil/Eos10-beams/",
+  "out_dir": "/pscratch/sd/m/mpatel26/ascot_h5s/Eos10-beams/",
+  "equil_file": "equil_EosOP3LowDensity1p25x_P12MWbroader.h5",
+  "sim_name": "ascot_EosOP3LowDensity1p25x_P12MWbroader",
+  "marker_file": "/global/u2/m/mpatel26/alpha_analysis-mp/beam-markers/markers_EosOP3LowDensity1p25x_P12MWbroader.json",
+  "nmrk": 10000,
+  "simmode": "gc",
+  "FPP_power": 958,
+  "collect_dist": true,
+  "tag": "EosOP3LowDensity1p25x_P12MWbroader"
+}

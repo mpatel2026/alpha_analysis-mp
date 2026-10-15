@@ -639,10 +639,27 @@ def convert_flux_to_cylindrical(eq, rho, theta, phi_flux):
     if not (rho.shape == theta.shape == phi_flux.shape):
         raise ValueError("Input arrays must have the same shape.")
 
-    grid = dscg.Grid(np.stack([rho, theta, phi_flux], axis=-1))
-    data = eq.compute(["R", "phi", "Z"], grid=grid)
-    r = np.array(grid.compress(data["R"])) * unyt.m
-    phi_cyl = np.array(grid.compress(data["phi"])) * unyt.rad
-    z = np.array(grid.compress(data["Z"])) * unyt.m
+    # eq.compute() builds a single dense array over all nodes in the grid, so
+    # a multi-hundred-thousand-marker call can exceed device memory (notably
+    # on a GPU). Evaluate it in chunks and concatenate the results; this is a
+    # no-op in terms of accuracy and only adds a negligible loop overhead on
+    # CPU.
+    n = rho.size
+    chunk_size = 100_000
+    r_chunks, phi_chunks, z_chunks = [], [], []
+    for start in range(0, max(n, 1), chunk_size):
+        stop = min(start + chunk_size, n)
+        grid = dscg.Grid(np.stack(
+            [rho[start:stop], theta[start:stop], phi_flux[start:stop]],
+            axis=-1,
+        ))
+        data = eq.compute(["R", "phi", "Z"], grid=grid)
+        r_chunks.append(np.array(grid.compress(data["R"])))
+        phi_chunks.append(np.array(grid.compress(data["phi"])))
+        z_chunks.append(np.array(grid.compress(data["Z"])))
+
+    r = np.concatenate(r_chunks) * unyt.m
+    phi_cyl = np.concatenate(phi_chunks) * unyt.rad
+    z = np.concatenate(z_chunks) * unyt.m
 
     return r, z, phi_cyl

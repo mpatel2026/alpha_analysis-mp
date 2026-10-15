@@ -1,0 +1,14 @@
+{
+  "inp_dir": "/pscratch/sd/m/mpatel26/equil/Eos10-std/",
+  "out_dir": "/pscratch/sd/m/mpatel26/ascot_h5s/Eos10-std/",
+  "equil_file": "G2000_std003_pert_seed_40945_free_bdry_final_worse_f_trapped.h5",
+  "sim_name": "ascot_G2000_std003_pert_seed_40945_free_bdry_final_worse_f_trapped",
+  "nmrk": 10000,
+  "wall_offset": 5,
+  "cell_area": 0.01,
+  "simmode": "gc",
+  "use_mixed_field": false,
+  "FPP_power": 958,
+  "SOL_profile": "zero",
+  "collect_dist": false
+}

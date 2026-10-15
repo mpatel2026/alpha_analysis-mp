@@ -1,0 +1,20 @@
+{
+  "file": "/pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/ISHW/G1600-free-reopt_I-engwall-LCFSmark100k_biot-bfield_p01cellarea_FO-mode_zero-profile_09302026.h5",
+  "label": "engwall-LCFSmark100k",
+  "n_markers": 115004,
+  "n_wall_hit": 94248,
+  "frac_markers_wall": 0.8195193210670934,
+  "initial_power_MW": 11.690007209922223,
+  "wall_power_MW": 8.996795740902439,
+  "wall_power_fraction_of_initial": 0.769614216599127,
+  "p_ref_MW": 191.0,
+  "power_loss_percent_of_pref": 4.710364262252585,
+  "wetted_area_m2": 136.99854708778986,
+  "n_wetted_tiles": 13772,
+  "peak_load_MW_m2": 5.196789675679376,
+  "peak_tile_id": 45342,
+  "peak_tile_area_m2": 0.01256162420196154,
+  "peak_tile_markers": 645,
+  "p99_load_MW_m2": 0.6670165115815901,
+  "mean_load_MW_m2": 0.06567073835562076
+}

@@ -1,0 +1,9 @@
+Unloading the cpe module is insufficient to restore the system defaults.
+Please run 'source
+/opt/cray/pe/cpe/26.03/restore_lmod_system_defaults.[csh|sh]'. 
+ 
+Sourcing the above script is not necessary if swapping the cpe module with a
+different version. 
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+[2026-09-21T13:19:20.739] error: *** STEP 58691312.0 ON nid007011 CANCELLED AT 2026-09-21T13:19:20 DUE to SIGNAL Terminated ***
+[2026-09-21T13:19:20.740] error: *** JOB 58691312 ON nid007011 CANCELLED AT 2026-09-21T13:19:20 DUE to SIGNAL Terminated ***

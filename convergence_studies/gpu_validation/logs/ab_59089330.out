@@ -1,0 +1,8 @@
+Variant       sim time [s]   output
+opt            333.391853   /pscratch/sd/m/mpatel26/gpu_validation/runs/gc20k_10ms_opt_59089330.h5
+reg168         355.154628   /pscratch/sd/m/mpatel26/gpu_validation/runs/gc20k_10ms_reg168_59089330.h5
+reg128         389.758112   /pscratch/sd/m/mpatel26/gpu_validation/runs/gc20k_10ms_reg128_59089330.h5
+vlen64         329.901727   /pscratch/sd/m/mpatel26/gpu_validation/runs/gc20k_10ms_vlen64_59089330.h5
+
+Compare with e.g.:
+  python compare_runs.py /pscratch/sd/m/mpatel26/gpu_validation/runs/gc20k_10ms_opt_59089330.h5 <other output> [--bitwise]

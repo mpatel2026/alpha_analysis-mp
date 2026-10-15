@@ -1,0 +1,10 @@
+Simulation time per process: min 47371.0 s (rank 3), mean 50451.7 s, max 52992.0 s (rank 2)
+Simulation finished in 52991.991028 s
+    81060 markers had end condition Thermalization
+     6375 markers had end condition Aborted
+    12565 markers had end condition Wall collision
+     6260 markers were aborted with an error message:
+      101 markers were aborted with an error message:
+       14 markers were aborted with an error message:
+Total ascot5_main wall time: 53000 s
+Output: /pscratch/sd/m/mpatel26/gpu_validation/runs/lcfs_fo100k_300ms_bench_opt_59125235.h5

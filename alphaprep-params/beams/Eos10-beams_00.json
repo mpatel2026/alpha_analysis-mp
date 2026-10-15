@@ -1,0 +1,10 @@
+{
+  "inp_dir": "/pscratch/sd/m/mpatel26/equil/Eos10-beams/",
+  "out_dir": "/pscratch/sd/m/mpatel26/ascot_h5s/Eos10-beams/",
+  "equil_file": "equil_Eos_G2000_DESC_Te_perturb_constantBeta_00.h5",
+  "sim_name": "ascot_Eos_steadystate_00-RPZ",
+  "nmrk": 10000,
+  "simmode": "gc",
+  "FPP_power": 958,
+  "collect_dist": true
+}

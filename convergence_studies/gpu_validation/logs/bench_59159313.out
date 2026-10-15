@@ -1,0 +1,13 @@
+Rank 3 on nid001809: node-local rank 3/4, using GPU 0 of 1 visible (PCI 0000:03:00.0, CUDA_VISIBLE_DEVICES=0)
+Rank 1 on nid001809: node-local rank 1/4, using GPU 0 of 1 visible (PCI 0000:82:00.0, CUDA_VISIBLE_DEVICES=0)
+Rank 0 on nid001809: node-local rank 0/4, using GPU 0 of 1 visible (PCI 0000:C1:00.0, CUDA_VISIBLE_DEVICES=0)
+Rank 2 on nid001809: node-local rank 2/4, using GPU 0 of 1 visible (PCI 0000:41:00.0, CUDA_VISIBLE_DEVICES=0)
+Simulation time per process: min 2071.2 s (rank 3), mean 2400.9 s, max 2572.4 s (rank 1)
+Simulation finished in 2572.341860 s
+    80581 markers had end condition Thermalization
+    19415 markers had end condition Wall collision
+        1 markers had end condition Min energy
+        3 markers had end condition Min energy and Thermalization
+          No markers were aborted.
+Total ascot5_main wall time: 2581 s
+Output: /pscratch/sd/m/mpatel26/gpu_validation/runs/ishw100k_300ms_bench_compact_59159313.h5

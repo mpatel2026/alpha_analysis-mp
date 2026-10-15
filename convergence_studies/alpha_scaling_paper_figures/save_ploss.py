@@ -67,14 +67,7 @@ def plot_single_ploss(ax, fn, name, nmrk, color, linestyle):
     # --- Plotting ---
     ax.plot(time_grid, lost_p_time, label=f"{name} (Final: {lost_p_time[-1]:.2f}%)", 
             color=color, linestyle=linestyle)
-    ax.fill_between(
-        time_grid, 
-        lower_bound, 
-        upper_bound, 
-        color=color, 
-        alpha=0.2,       # Adjust transparency
-        linewidth=0      # Removes the thin border line around the shaded area
-    )
+
     print(f"Power loss for {name}: {lost_p_time[-1]:.2f}%")
 
 
@@ -127,7 +120,7 @@ if __name__ == "__main__":
     )
     plot_single_ploss(
         ax=ax[0],
-        fn=os.path.join(inp_dir, "G1600-free-reopt_I_10cm-wall_1000k-mrk_biot-bfield_p01cellarea_FLR-mode_decay-profile_04082026.h5"),
+        fn=os.path.join(inp_dir, "ISHW/G1600-free-reopt_I_10cm-wall_1000k-mrk_biot-bfield_p01cellarea_FLR-mode_decay-profile_04082026.h5"),
         name=r"$\Delta$w 10cm - Decay",
         nmrk=1000000,
         color=colors[1],
@@ -229,42 +222,6 @@ if __name__ == "__main__":
     )
 
 
-    #plot sim modes and bfields
-    plot_single_ploss(
-        ax=ax[1],
-        fn=os.path.join(inp_dir, "G1600-free-reopt_I_LCFS-wall_1000k-mrk_biot-bfield_p01cellarea_FLR-mode_zero-profile_05182026.h5"),
-        name=r"LCFS GC: Biot-Savart",
-        nmrk=1000000,
-        color=colors[2],
-        linestyle="--"
-    )
-    # 30cm walls
-    plot_single_ploss(
-        ax=ax[1],
-        fn=os.path.join(inp_dir, "G1600-free-reopt_I_LCFS-wall_1000k-mrk_mixed-bfield_p01cellarea_FLR-mode_zero-profile_06112026.h5"),
-        name=r"LCFS GC: Nested Internal Flux Surfaces",
-        nmrk=1000000,
-        color=colors[3],
-        linestyle="--"
-    )
-    plot_single_ploss(
-        ax=ax[1],
-            fn=os.path.join(inp_dir, "G1600-free-reopt_I_LCFS-wall_100k-mrk_biot-bfield_p01cellarea_FO-mode_zero-profile_06112026.h5"),
-        name=r"LCFS FO: Biot-Savart",
-        nmrk=1000000,
-        color=colors[2],
-        linestyle=":"
-    )
-    plot_single_ploss(
-        ax=ax[1],
-        fn=os.path.join(inp_dir, "G1600-free-reopt_I_LCFS-wall_100k-mrk_mixed-bfield_p01cellarea_FO-mode_zero-profile_06112026.h5"),
-        name=r"LCFS FO: Nested Internal Flux Surfaces",
-        nmrk=1000000,
-        color=colors[3],
-        linestyle=":"
-    )
-
-
 
     # 3. Standard Formatting (Applied once to the whole axis)
 
@@ -282,8 +239,9 @@ if __name__ == "__main__":
     ]
 
     ax[0].legend(custom_lines, [r'$\Delta \bar{x}$ 10cm w/ divertor', r'$\Delta$w 10cm', r'$\Delta$w 20cm', r'$\Delta$w 30cm', "Vacuum", "Decay", "Flat"], 
-            loc='upper left', frameon=True)
+            loc='lower right', frameon=True)
     ax[0].grid(True, which="both", ls="-", alpha=0.3)
+    ax[0].set_yscale('log')
     plt.tight_layout()
 
 
@@ -293,15 +251,14 @@ if __name__ == "__main__":
     custom_lines2 = [
         Line2D([0], [0], color=colors[0], lw=2, linestyle='-'),
         Line2D([0], [0], color=colors[1], lw=2, linestyle='-'),
-        Line2D([0], [0], color=colors[2], lw=2, linestyle='-'),
-        Line2D([0], [0], color=colors[3], lw=2, linestyle='-'),
         Line2D([0], [0], color='black', lw=2, linestyle='--'),
         Line2D([0], [0], color='black', lw=2, linestyle=':'),
     ]
 
-    ax[1].legend(custom_lines2, [r'$\Delta$w 10cm: Biot-Savart', r'$\Delta$w 10cm: Nested Internal Flux Surfaces', r'LCFS: Biot-Savart', r'LCFS: Nested Internal Flux Surfaces', r'Guiding Center', r'Full Orbit'], 
-            loc='upper left', frameon=True)
+    ax[1].legend(custom_lines2, [r'Biot-Savart', r'Nested Internal Flux Surfaces', r'Guiding Center', r'Full Orbit'], 
+            loc='lower right', frameon=True)
     ax[1].grid(True, which="both", ls="-", alpha=0.3)
+    ax[1].set_yscale('log')
     plt.tight_layout()
 
     # 4. Save and Display

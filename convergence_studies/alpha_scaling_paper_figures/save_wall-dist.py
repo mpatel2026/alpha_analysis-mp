@@ -20,7 +20,7 @@ LOAD_THRESHOLD = 50000  # W/m^2
 
 # --- 2. Load Data ---
 inp_dir = "/pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/"
-file_name = "G1600-engineeringwall-withtargets-1000kmrk-gc-biot-decay-04292026.h5"
+file_name = "ISHW/G1600-free-reopt_I-engwall-LCFSmark1M_biot-bfield_p01cellarea_FO-mode_zero-profile_09302026.h5"
 #file_name = "G1600-free-reopt_I_engineeringwall_100k-mrk_biot-bfield_p01cellarea_FO-mode_zero-profile_05092026.h5"
 biot = Ascot(inp_dir + file_name)
 

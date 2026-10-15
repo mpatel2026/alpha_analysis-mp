@@ -1,0 +1,21 @@
+{
+  "recipe": "beam",
+  "defaults": {
+    "inp_dir": "/pscratch/sd/m/mpatel26/equil/Eos10-beams/",
+    "out_dir": "/pscratch/sd/m/mpatel26/ascot_h5s/Eos10-beams/",
+    "use_stell_sym": true,
+    "equil_file": "equil_{tag}.h5",
+    "sim_name": "ascot_{tag}",
+    "marker_file": "beam-markers/markers_{tag}.json",
+    "nmrk": 10000,
+    "simmode": "gc",
+    "FPP_power": 958,
+    "collect_dist": true
+  },
+  "cases": [
+    "EosOP3LowDensity1p25x_P12MWbroader",
+    "EosOP3LowDensity1p5x_P12MWbroader",
+    "EosOP3LowDensity1p75x_P12MWbroader",
+    "EosOP3LowDensity2p0x_P12MWbroader"
+  ]
+}

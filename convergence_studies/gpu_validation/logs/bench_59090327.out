@@ -1,0 +1,9 @@
+Simulation time per process: min 2042.4 s (rank 3), mean 2417.0 s, max 2608.6 s (rank 1)
+Simulation finished in 2608.571951 s
+    80581 markers had end condition Thermalization
+    19415 markers had end condition Wall collision
+        1 markers had end condition Min energy
+        3 markers had end condition Min energy and Thermalization
+          No markers were aborted.
+Total ascot5_main wall time: 2617 s
+Output: /pscratch/sd/m/mpatel26/gpu_validation/runs/ishw100k_300ms_bench_opt_59090327.h5

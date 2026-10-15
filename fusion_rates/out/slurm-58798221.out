@@ -1,0 +1,94 @@
+Unloading the cpe module is insufficient to restore the system defaults.
+Please run 'source
+/opt/cray/pe/cpe/26.03/restore_lmod_system_defaults.[csh|sh]'. 
+ 
+Sourcing the above script is not necessary if swapping the cpe module with a
+different version. 
+/global/u2/m/mpatel26/ascot5/ascot5_develop_mp/a5py/routines/plotting.py:35: UserWarning: Could not import cKDTree and alphashape. 3D surface plotting disabled.
+  warnings.warn(
+ERROR:2026-09-23 14:58:06,842:jax._src.xla_bridge:487: Jax plugin configuration error: Exception when calling jax_plugins.xla_cuda12.initialize()
+Traceback (most recent call last):
+  File "/pscratch/sd/m/mpatel26/conda_backup/.conda/envs/ascot-develop-mp/lib/python3.12/site-packages/jax/_src/xla_bridge.py", line 485, in discover_pjrt_plugins
+    plugin_module.initialize()
+  File "/pscratch/sd/m/mpatel26/conda_backup/.conda/envs/ascot-develop-mp/lib/python3.12/site-packages/jax_plugins/xla_cuda12/__init__.py", line 328, in initialize
+    _check_cuda_versions(raise_on_first_error=True)
+  File "/pscratch/sd/m/mpatel26/conda_backup/.conda/envs/ascot-develop-mp/lib/python3.12/site-packages/jax_plugins/xla_cuda12/__init__.py", line 285, in _check_cuda_versions
+    local_device_count = cuda_versions.cuda_device_count()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: jaxlib/cuda/versions_helpers.cc:113: operation cuInit(0) failed: CUDA_ERROR_NO_DEVICE
+Case steadystate_00: /pscratch/sd/m/mpatel26/ascot_h5s/Eos10-beams/ascot_Eos_steadystate_00-RPZ.h5 (run_1151424755)
+DESC equilibrium: /pscratch/sd/m/mpatel26/equil/Eos10-beams/equil_Eos_G2000_DESC_Te_perturb_constantBeta_00.h5
+Background: pure D, n_D = n_e (core n_e = 6.5239e+19 m^-3), T_i/T_e from file (core T_i = 4271 eV)
+Fast D: T(rho) = 316 + (140 - 316)*rho keV, n(rho) = 3.000e+18*(1 - rho) m^-3
+  particle-weighted mean fast T 228.89 keV
+  DESC quadrature plasma volume 33.5157 m^3 (DESC V = 33.5155 m^3); outside the (R,phi,z) grid: -1.421e-14 m^3
+  total fast particles 3.4126e+19 (outside grid: 2.048e+04); volume-averaged density 1.0182e+18 m^-3
+  max cell-averaged density 2.7953e+18 m^-3 (on-axis profile value 3.0000e+18)
+  Maxwellian fraction inside the +-5 sqrt(mT_max) momentum grid (worst component): 0.999996
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 1
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             6.52e+19/1.00e+15                4.27e+03/1.00e+00       
+[electrons]   -1  /  0.001             6.52e+19/1.00e+15                2.04e+04/1.00e+00       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+AFSI5
+Tag 5.6.2-79-g9c291f5-dirty
+Branch conformal-walls
+
+
+Done
+  DD_He3n/thermal: 6.2983e+14 /s
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 1
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             6.52e+19/1.00e+15                4.27e+03/1.00e+00       
+[electrons]   -1  /  0.001             6.52e+19/1.00e+15                2.04e+04/1.00e+00       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+AFSI5
+Tag 5.6.2-79-g9c291f5-dirty
+Branch conformal-walls
+
+
+Done
+  DD_He3n/beam-target: 6.0694e+16 /s
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 1
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             6.52e+19/1.00e+15                4.27e+03/1.00e+00       
+[electrons]   -1  /  0.001             6.52e+19/1.00e+15                2.04e+04/1.00e+00       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+AFSI5
+Tag 5.6.2-79-g9c291f5-dirty
+Branch conformal-walls
+
+
+Done
+  DD_He3n/beam-beam: 1.5475e+15 /s
+Wrote /global/homes/m/mpatel26/alpha_analysis-mp/fusion_rates/DD_He3n_rate_distribution_hypFastD_T316-140keV_steadystate_00_DDplasma.npz (DD_He3n rate per (R,phi,z) cell, total 6.2871e+16 /s)
+
+1D plasma profiles (P_1D)
+Min rho = 0.00e+00, Max rho = 2.00e+00, Number of rho grid points = 2047, Number of ion species = 1
+Species Z/A  charge [e]/mass [amu] Density [m^-3] at Min/Max rho    Temperature [eV] at Min/Max rho
+   1  /  2     1  /  2.014             6.52e+19/1.00e+15                4.27e+03/1.00e+00       
+[electrons]   -1  /  0.001             6.52e+19/1.00e+15                2.04e+04/1.00e+00       
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+Quasi-neutrality is (electron / ion charge density) 1.00
+Toroidal rotation [rad/s] at Min/Max rho: 0.00e+00/0.00e+00
+  <sigma v> check at 10 keV: integrated 6.0773e-25, Bosch-Hale fit 6.0227e-25 m^3/s
+  <sigma v> check at 50 keV: integrated 1.1376e-23, Bosch-Hale fit 1.1330e-23 m^3/s
+
+DD NEUTRON RATE (DD_He3n), hypothetical fast D (T 316 -> 140 keV, n0 = 3.00e+18 m^-3) on steadystate_00 pure-D background [neutrons/s]
+channel                 AFSI   semi-analytic  AFSI/ref
+thermal           6.2983e+14      6.3546e+14    0.9911
+beam-target       6.0694e+16      6.0866e+16    0.9972
+beam-beam         1.5475e+15      1.5764e+15    0.9817
+total             6.2871e+16      6.3078e+16

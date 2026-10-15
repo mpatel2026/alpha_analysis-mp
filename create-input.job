@@ -1,37 +1,35 @@
 #!/bin/bash
-#SBATCH --job-name=create_input
-#SBATCH --output=prep-logs/slurm-%j.out
+#SBATCH --job-name=create_inputs
 #SBATCH --nodes=1
-#SBATCH --ntasks=1             # 1 parallel task
-#SBATCH --cpus-per-task=96
-#SBATCH --time=0:30:00
-#SBATCH --qos=stellar-debug    # Stellar debug queue (max 30 min)
+#SBATCH --ntasks-per-node=1
+#SBATCH --output=prep-logs/slurm-%j.out
+#SBATCH --cpus-per-task=64
+#SBATCH --time=00:05:00
+#SBATCH --constraint=gpu
+#SBATCH --gpus-per-node=1
+#SBATCH --qos=debug
+#SBATCH --account=m4477
 #SBATCH --mail-type=begin,end,fail
 #SBATCH --mail-user=mpatel26@thea.energy
 
-# 1. Threading and Parallelism Flags
-# This tricks JAX into seeing 64 independent devices on the CPU
-export XLA_FLAGS="--xla_force_host_platform_device_count=64 --xla_cpu_multi_thread_eigen=true"
+# Device (CPU/GPU) and JAX/XLA environment are configured automatically at
+# runtime by device_setup.py, imported first thing by each script below.
 
-export OMP_NUM_THREADS=96
-export MKL_NUM_THREADS=96
-export NUMBA_NUM_THREADS=96
-# 2. JAX Precision and Backend behavior
-export JAX_ENABLE_X64=True
-export JAX_PLATFORMS=cpu
-export XLA_PYTHON_CLIENT_PREALLOCATE=false
-
-# 3. Environment Setup
+# 1. Environment Setup
 module purge
-module load anaconda3/2024.6
+module load conda
+
 
 source $(conda info --base)/etc/profile.d/conda.sh
 conda activate ascot-develop-mp
 
 
-PARAMS="alphaprep-params/std003_attempt6.json"
+PARAMS="alphaprep-params/beams/EosOP3LowDensity2p0x_P12MWbroader.json"
+MARKERS="beam-markers/markers_EosOP3LowDensity2p0x_P12MWbroader.json"
 
-srun -n 1 -c 96 --cpu-bind=cores python -u create-input.py --params=$PARAMS
-#srun -n 1 -c 96 --cpu-bind=cores python -u create-input-NoStellSym.py --params=$PARAMS
+srun -n 1 -c 64 --cpu-bind=cores python -u create-input.py --params=$PARAMS
 
-srun -n 1 -c 96 --cpu-bind=cores python -u set_field.py --params=$PARAMS
+srun -n 1 -c 64 --cpu-bind=cores python -u set_mrk_gc.py --params=$PARAMS --marker_file=$MARKERS
+#srun -n 1 -c 64 --cpu-bind=cores python -u set_field_and_profiles.py --params=$PARAMS
+
+

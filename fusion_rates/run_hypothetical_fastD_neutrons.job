@@ -1,0 +1,21 @@
+#!/bin/bash
+#SBATCH --job-name=hyp_fastD_neutrons
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --output=out/slurm-%j.out
+#SBATCH --cpus-per-task=64
+#SBATCH --time=00:59:00
+#SBATCH --constraint=cpu
+#SBATCH --qos=regular
+#SBATCH --account=m4477
+
+module purge
+module load conda
+source $(conda info --base)/etc/profile.d/conda.sh
+conda activate ascot-develop-mp
+
+export HDF5_USE_FILE_LOCKING=FALSE
+export JAX_PLATFORMS=cpu
+
+cd $SLURM_SUBMIT_DIR
+srun -n 1 -c 64 --cpu-bind=cores python -u hypothetical_fastD_neutrons.py

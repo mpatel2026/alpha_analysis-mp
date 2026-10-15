@@ -1,0 +1,6 @@
+Simulation finished in 5837.010588 s
+    20294 markers had end condition Wall collision
+   179706 markers had end condition Thermalization
+          No markers were aborted.
+Total ascot5_main wall time: 5844 s
+Output: /pscratch/sd/m/mpatel26/gpu_validation/runs/g1600_200k_300ms_bench_base-minfo_59122647.h5

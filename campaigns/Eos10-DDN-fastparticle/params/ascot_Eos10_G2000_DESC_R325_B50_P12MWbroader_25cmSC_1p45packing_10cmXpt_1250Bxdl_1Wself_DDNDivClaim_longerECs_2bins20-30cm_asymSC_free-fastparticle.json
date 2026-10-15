@@ -1,0 +1,18 @@
+{
+  "use_stell_sym": false,
+  "inp_dir": "/pscratch/sd/m/mpatel26/equil/Eos10-DDN/",
+  "out_dir": "/pscratch/sd/m/mpatel26/ascot_h5s/Eos10-DDN/",
+  "equil_file": "equil_Eos10_G2000_DESC_R325_B50_P12MWbroader_25cmSC_1p45packing_10cmXpt_1250Bxdl_1Wself_DDNDivClaim_longerECs_2bins20-30cm_asymSC_free.h5",
+  "sim_name": "ascot_Eos10_G2000_DESC_R325_B50_P12MWbroader_25cmSC_1p45packing_10cmXpt_1250Bxdl_1Wself_DDNDivClaim_longerECs_2bins20-30cm_asymSC_free-fastparticle",
+  "nmrk": 10000,
+  "wall_offset": 5,
+  "cell_area": 0.01,
+  "simmode": "gc",
+  "use_mixed_field": false,
+  "FPP_power": 958,
+  "SOL_profile": "zero",
+  "collect_dist": false,
+  "tag": "Eos10_G2000_DESC_R325_B50_P12MWbroader_25cmSC_1p45packing_10cmXpt_1250Bxdl_1Wself_DDNDivClaim_longerECs_2bins20-30cm_asymSC_free",
+  "EC_file": "coils_Eos10_G2000_DESC_R325_B50_P12MWbroader_25cmSC_1p45packing_10cmXpt_1250Bxdl_1Wself_DDNDivClaim_longerECs_2bins20-30cm_asymSC_EC.h5",
+  "SC_file": "coils_Eos10_G2000_DESC_R325_B50_P12MWbroader_25cmSC_1p45packing_10cmXpt_1250Bxdl_1Wself_DDNDivClaim_longerECs_2bins20-30cm_asymSC_SC_rank00_final.h5"
+}

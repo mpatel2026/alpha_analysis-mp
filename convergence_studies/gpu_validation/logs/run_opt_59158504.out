@@ -1,0 +1,2 @@
+Input: /pscratch/sd/m/mpatel26/ascot_h5s/Eos10-beams/ascot_Eos10_G2000_OP3ProfileBP3_12MWbroader_optGPU.h5
+Binary: /global/homes/m/mpatel26/ascot5/ascot5_developed_mp_hpc_GPU_optimized/variants/ascot5_main.opt, 8 ranks on 2 nodes

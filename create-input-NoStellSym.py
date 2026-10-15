@@ -59,8 +59,8 @@ def main():
             file_path.unlink(missing_ok=True)
 
     # End conditions
-    thermal_energy = 200.0 * unyt.eV
-    tmax = 300 * unyt.ms
+    thermal_energy = 20.0 * unyt.eV #200.0 * unyt.eV
+    tmax = 1000 * unyt.ms # 300 * unyt.ms
     
     # Simulation mode settings
     mode = simmode
@@ -103,7 +103,7 @@ def main():
         path=out_dir, 
         sim_name=sim_name, 
         create=create,
-        nR=200, nZ=200, nPhi=192, 
+        nR=200, nZ=200, nPhi=200, 
         wall_offset=wall_offset,
         use_stell_sym = False, 
         fn_shaping=shaping_path, 
@@ -125,6 +125,7 @@ def main():
         rhomax=None, 
         min_energy=thermal_energy,
         enable_collisions=True,
+        afsi_weighting=True,
         tmax=tmax, 
         **dist_config
     )
@@ -149,7 +150,8 @@ def main():
     P_fpp = rescale_FPP  # MW
     alpha_P = P_fpp * (3.5 / 17.1)  # From fusion power get total power of just alphas
     rescale_P = alpha_P / P_tot
-    new_weight = weight * rescale_P
+    #new_weight = weight * rescale_P
+    new_weight = [1] * nmrk
     new_mrk['weight'] = new_weight
     
     # Create a new marker input which is the same as the original markers but with rescaled weights

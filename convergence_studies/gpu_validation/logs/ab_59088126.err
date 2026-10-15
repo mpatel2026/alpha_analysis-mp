@@ -1,0 +1,7 @@
+Unloading the cpe module is insufficient to restore the system defaults.
+Please run 'source
+/opt/cray/pe/cpe/26.03/restore_lmod_system_defaults.[csh|sh]'. 
+ 
+Sourcing the above script is not necessary if swapping the cpe module with a
+different version. 
+[2026-09-29T20:12:07.310] error: *** JOB 59088126 ON nid003700 CANCELLED AT 2026-09-29T20:12:07 DUE TO TIME LIMIT ***

@@ -1,0 +1,19 @@
+=== 2 nodes, 8 ranks
+Rank 1 on nid008649: node-local rank 1/4, using GPU 0 of 1 visible (CUDA_VISIBLE_DEVICES=0)
+Rank 3 on nid008649: node-local rank 3/4, using GPU 0 of 1 visible (CUDA_VISIBLE_DEVICES=0)
+Rank 2 on nid008649: node-local rank 2/4, using GPU 0 of 1 visible (CUDA_VISIBLE_DEVICES=0)
+Rank 5 on nid008652: node-local rank 1/4, using GPU 0 of 1 visible (CUDA_VISIBLE_DEVICES=0)
+Rank 0 on nid008649: node-local rank 0/4, using GPU 0 of 1 visible (CUDA_VISIBLE_DEVICES=0)
+Rank 4 on nid008652: node-local rank 0/4, using GPU 0 of 1 visible (CUDA_VISIBLE_DEVICES=0)
+Rank 7 on nid008652: node-local rank 3/4, using GPU 0 of 1 visible (CUDA_VISIBLE_DEVICES=0)
+Rank 6 on nid008652: node-local rank 2/4, using GPU 0 of 1 visible (CUDA_VISIBLE_DEVICES=0)
+Simulation time per process: min 151.8 s (rank 0), mean 200.5 s, max 246.5 s (rank 7)
+Simulation finished in 246.427557 s
+distinct (host, GPU) pairs:
+2
+=== 1 node, 4 ranks
+Simulation time per process: min 181.8 s (rank 0), mean 233.8 s, max 285.5 s (rank 3)
+Simulation finished in 285.459408 s
+
+Compare with:
+  python compare_runs.py /pscratch/sd/m/mpatel26/gpu_validation/runs/gc40kdist_10ms_opt_4gpu_59088942.h5 /pscratch/sd/m/mpatel26/gpu_validation/runs/gc40kdist_10ms_opt_8gpu_59088942.h5

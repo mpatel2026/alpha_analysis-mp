@@ -1,0 +1,7 @@
+Variant       sim time [s]   output
+opt            140.958473   /pscratch/sd/m/mpatel26/gpu_validation/runs/fo20k_0p5ms_opt_59159307.h5
+compact        141.220558   /pscratch/sd/m/mpatel26/gpu_validation/runs/fo20k_0p5ms_compact_59159307.h5
+compact_stress   140.347611   /pscratch/sd/m/mpatel26/gpu_validation/runs/fo20k_0p5ms_compact_stress_59159307.h5
+
+Compare with e.g.:
+  python compare_runs.py /pscratch/sd/m/mpatel26/gpu_validation/runs/fo20k_0p5ms_opt_59159307.h5 <other output> [--bitwise]

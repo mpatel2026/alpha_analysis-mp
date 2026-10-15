@@ -1,0 +1,10 @@
+{
+  "inp_dir": "/pscratch/sd/m/mpatel26/equil/Eos10-std/",
+  "out_dir": "/pscratch/sd/m/mpatel26/ascot_h5s/Eos10-std/",
+  "equil_file": "equil_Eos10_G2000_tr_reopt_fixed.h5",
+  "sim_name": "ascot_Eos10_G2000_tr_reopt_fixed",
+  "nmrk": 10000,
+  "simmode": "gc",
+  "FPP_power": 958,
+  "collect_dist": false
+}

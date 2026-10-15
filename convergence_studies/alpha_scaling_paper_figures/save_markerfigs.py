@@ -4,17 +4,17 @@ import matplotlib.pyplot as plt
 from a5py import Ascot
 
 plt.rcParams.update({
-    'font.size': 8,          # General font size
-    'axes.labelsize': 8,     # x and y labels
-    'axes.titlesize': 8,     # Title size
-    'xtick.labelsize': 7,    # x-axis tick labels
-    'ytick.labelsize': 7,    # y-axis tick labels
-    'legend.fontsize': 8,     # Legend size
+    'font.size': 11,          # General font size
+    'axes.labelsize': 11,     # x and y labels
+    'axes.titlesize': 11,     # Title size
+    'xtick.labelsize': 9,    # x-axis tick labels
+    'ytick.labelsize': 9,    # y-axis tick labels
+    'legend.fontsize': 11,     # Legend size
     'font.family': 'sans-serif' # A clean, professional serif font
 })
 
-input_dir = "/pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/"
-ascot = Ascot(input_dir + "test_loss_sampling3.h5")
+input_dir = "/pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/ISHW/"
+ascot = Ascot(input_dir + "G1600-free-reopt_I_eng-wall_100k-mrk_biot-bfield_p01cellarea_GC-mode_zero-profile_09012026.h5")
 theta_init = ascot.data.active.getstate("thetamod", state="ini")
 phi_init = ascot.data.active.getstate("phimod", state="ini")
 rho_init = ascot.data.active.getstate("rho", state="ini")
@@ -68,26 +68,26 @@ def plot_histogram(data, nbins, qnt, ax = None, weights = None):
     if weights is not None:
         # Applying your logic: weights divided by delta
         # colors: skyblue for particles, salmon for markers. 
-        ax.hist(data, bins=nbins, color='salmon', edgecolor='black', weights=(weights/delta))
+        ax.hist(data, bins=nbins, color='lightblue', edgecolor='black', weights=(weights/delta))
     else:
-        ax.hist(data, bins=nbins, color='salmon', edgecolor='black')   
+        ax.hist(data, bins=nbins, color='lightblue', edgecolor='black')   
     # Dynamic X-label with unyt
     qnt_label = rf'${qnt}_{{ini}}$'
 
     if unit_str is None:
         ax.set_xlabel(qnt_label)
-        #ax.set_ylabel(rf'$F/d{qnt} \ [1/s]$')
-        ax.set_ylabel(rf'$M/d{qnt} \ [markers]$')
+        ax.set_ylabel(rf'$F/d{qnt} \ [1/s]$')
+        #ax.set_ylabel(rf'$M/d{qnt} \ [markers]$')
     elif unit_str == rf'^\circ':
         # This renders as: qnt_ini [°]
         ax.set_xlabel(rf'{qnt_label} [${unit_str}$]')
-        #ax.set_ylabel(rf'$F/d{qnt} \ [1 / (s \cdot {unit_str})]$')
-        ax.set_ylabel(rf'$M/d{qnt} \ [markers / {unit_str}]$')
+        ax.set_ylabel(rf'$F/d{qnt} \ [1 / (s \cdot {unit_str})]$')
+        #ax.set_ylabel(rf'$M/d{qnt} \ [markers / {unit_str}]$')
     else:
         # This renders as: qnt_ini [unit]
         ax.set_xlabel(rf'{qnt_label} [{unit_str}]')
-        #ax.set_ylabel(rf'$F/d{qnt} \ [1 / (s \cdot {unit_str})]$')
-        ax.set_ylabel(rf'$M/d{qnt} \ [markers / {unit_str}]$')
+        ax.set_ylabel(rf'$F/d{qnt} \ [1 / (s \cdot {unit_str})]$')
+        #ax.set_ylabel(rf'$M/d{qnt} \ [markers / {unit_str}]$')
     
     ax.grid(axis='y', alpha=0.75)
     
@@ -145,8 +145,8 @@ def plot_hist2d(x_data, y_data, nbins, ax = None, weight = None):
     cbar.ax.yaxis.get_offset_text().set_horizontalalignment('right')
     cbar.ax.yaxis.get_offset_text().set_x(1.5) # Adjust 1.5 to push it further right if needed
 
-    #cbar.set_label(r'F/(d$\lambda$dE) [1/(s $\cdot$ MeV)]', size=9)
-    cbar.set_label(r'M/(d$\lambda$dE) [markers/(MeV)]', size=9)
+    cbar.set_label(r'F/(d$\lambda$dE) [1/(s $\cdot$ MeV)]', size=9)
+    #cbar.set_label(r'F/(d$\lambda$dE) [1/(MeV)]', size=9)
     cbar.ax.tick_params(labelsize=9)
     
     ax.set_xlabel(r'$\lambda_{ini}$')
@@ -329,25 +329,25 @@ plt.savefig("figs/initial_conditions-of-all-vs-lost-markers.png", dpi=600)
 plt.show()
 
 
-fig = plt.figure(figsize=(width_inch, 2*height_inch), constrained_layout=True)
+fig = plt.figure(figsize=(width_inch, height_inch), constrained_layout=True)
 
 # 2. Split the figure into 2 rows of "subfigures"
-subfigs = fig.subfigures(2, 1)
+subfigs = fig.subfigures(1, 1)
 
 # 3. Setup Top Row
-subfigs[0].suptitle("initial conditions of all markers", fontsize=14)
-ax1, ax2, ax3, ax4 = subfigs[0].subplots(1, 4)
+#subfigs.suptitle("initial conditions of all markers", fontsize=14)
+#ax1, ax2, ax3, ax4 = subfigs.subplots(1, 4)
 
 # 4. Setup Bottom Row (using raw string 'r' and \mathit for italics)
-subfigs[1].suptitle(r"initial conditions of all particles", fontsize=14)
-ax5, ax6, ax7, ax8 = subfigs[1].subplots(1, 4)
+subfigs.suptitle("initial conditions of all particles", fontsize=14)
+ax5, ax6, ax7, ax8 = subfigs.subplots(1, 4)
 
 # --- Your Plotting Code Remains the Same ---
 
-ax1 = plot_histogram(rho_init, nbins=20, qnt="ρ", ax=ax1)
-ax2 = plot_histogram(theta_init, nbins=20, qnt="θ", ax=ax2)
-ax3 = plot_histogram(phi_init, nbins=20, qnt="ϕ", ax=ax3)
-ax4 = plot_hist2d(pitch_init, Ekin_init, nbins=100, ax=ax4)
+#ax1 = plot_histogram(rho_init, nbins=20, qnt="ρ", ax=ax1)
+#ax2 = plot_histogram(theta_init, nbins=20, qnt="θ", ax=ax2)
+#ax3 = plot_histogram(phi_init, nbins=20, qnt="ϕ", ax=ax3)
+#ax4 = plot_hist2d(pitch_init, Ekin_init, nbins=100, ax=ax4)
 
 ax5 = plot_histogram(rho_init, nbins=20, weights=weight_init, qnt="ρ", ax=ax5)
 ax6 = plot_histogram(theta_init, nbins=20, weights=weight_init, qnt="θ", ax=ax6)
@@ -356,17 +356,17 @@ ax8 = plot_hist2d(pitch_init, Ekin_init, nbins=100, weight=weight_init, ax=ax8)
 plt.savefig("figs/new_sampling_markers-vs-particles.png", dpi=600)
 plt.show()
 
-fig_ratio, [ax1, ax2, ax3, ax4] = plt.subplots(1, 4, figsize=(width_inch, height_inch), constrained_layout=True)
-fig_ratio.suptitle("Relative Fraction of Lost Markers / Total Initial Markers", fontsize=12)
+#fig_ratio, [ax1, ax2, ax3, ax4] = plt.subplots(1, 4, figsize=(width_inch, height_inch), constrained_layout=True)
+#fig_ratio.suptitle("Relative Fraction of Lost Markers / Total Initial Markers", fontsize=12)
 
 # 1D Normalized Histograms (Unweighted representation)
-normalize_hist(lost_rho_init, rho_init, nbins=20, qnt="ρ", ax=ax1)
-normalize_hist(lost_theta_init, theta_init, nbins=20, qnt="θ", ax=ax2)
-normalize_hist(lost_phi_init, phi_init, nbins=20, qnt="ϕ", ax=ax3)
+#normalize_hist(lost_rho_init, rho_init, nbins=20, qnt="ρ", ax=ax1)
+#normalize_hist(lost_theta_init, theta_init, nbins=20, qnt="θ", ax=ax2)
+#normalize_hist(lost_phi_init, phi_init, nbins=20, qnt="ϕ", ax=ax3)
 
 # 2D Normalized Heatmap
-normalize_hist2d(lost_pitch_init, lost_Ekin_init, pitch_init, Ekin_init, nbins=100, ax=ax4)
+#normalize_hist2d(lost_pitch_init, lost_Ekin_init, pitch_init, Ekin_init, nbins=100, ax=ax4)
 
-plt.savefig("figs/lost_marker_fraction.png", dpi=600)
-plt.show()
+#plt.savefig("figs/lost_marker_fraction.png", dpi=600)
+#plt.show()
 
