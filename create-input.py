@@ -48,6 +48,8 @@ def main():
     collect_dist = config.get("collect_dist", False)
     sol_profile = config.get("SOL_profile", "decay")
     simmode = config.get("simmode", "gc")
+    enable_collisions = config.get("enable_collisions", True)
+    tmax_ms = config.get("tmax_ms", 3000)  # simulation time limit (ENDCOND_LIM_SIMTIME)
     use_stell_sym = bool(config.get("use_stell_sym", True))
     preset = STELLSYM_PRESETS[use_stell_sym]
     nPhi = config.get("nPhi", preset["nPhi"])
@@ -75,7 +77,7 @@ def main():
 
     # End conditions
     thermal_energy = 200.0 * unyt.eV
-    tmax = 3000 * unyt.ms
+    tmax = tmax_ms * unyt.ms
     # Simulation mode settings
     mode = simmode
     if mode == 'gc':
@@ -141,7 +143,7 @@ def main():
         flr_corrections=flr_corrections,
         rhomax=None, 
         min_energy=thermal_energy,
-        enable_collisions=True,
+        enable_collisions=enable_collisions,
         tmax=tmax, 
         **dist_config
     )

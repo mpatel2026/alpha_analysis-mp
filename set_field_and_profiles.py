@@ -31,6 +31,7 @@ inp_dir = config.get("inp_dir", None)
 out_dir = config.get("out_dir", None)
 equil_name = config.get("equil_file")
 simname = config["sim_name"]  # Required
+flip_bfield = config.get("flip_bfield", True)  # flip B so alphas drift down
 
 
 fn = inp_dir + "equil_G1600_DESC_fixed.h5"
@@ -72,11 +73,15 @@ br = bfield['br']
 bz = bfield['bz']
 bphi = bfield['bphi']
 
-bfield['br'] = -1 * (B_rescale * br)
-bfield['bz'] = -1 * (B_rescale * bz)
-bfield['bphi'] = -1 * (B_rescale * bphi)
+sign = -1 if flip_bfield else 1
+bfield['br'] = sign * (B_rescale * br)
+bfield['bz'] = sign * (B_rescale * bz)
+bfield['bphi'] = sign * (B_rescale * bphi)
 
 simulation.data.create_input('B_STS', **bfield, activate=True)
 
 print(f"set up bfield for {simname} to have Helios equivalent p* at 3.5 MeV by scaling up B by {B_rescale:.3f}")
-print(f"Flipped bfield for {simname} so that alphas drift down")
+if flip_bfield:
+    print(f"Flipped bfield for {simname} so that alphas drift down")
+else:
+    print(f"Did not flip bfield for {simname} (flip_bfield = false)")

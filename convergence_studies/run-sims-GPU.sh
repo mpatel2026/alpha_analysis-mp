@@ -1,17 +1,17 @@
 #!/bin/bash
 #SBATCH --job-name=ascot_gpu_array
-#SBATCH --array=14
+#SBATCH --array=21
 #SBATCH --output=logs-GPU/test_%a.out
 #SBATCH --error=logs-GPU/test_%a.err
 
 # --- GPU Resource Allocations ---
-#SBATCH --nodes=4
+#SBATCH --nodes=10
 #SBATCH --ntasks-per-node=4           # 1 MPI Task per GPU
 #SBATCH --gpus-per-node=4             # Request all 4 A100s per node
 #SBATCH --cpus-per-task=1            # Full node CPU allocation (128 threads / 4 tasks)
 #SBATCH --constraint=gpu              
 #SBATCH --qos=regular
-#SBATCH --time=00:15:00
+#SBATCH --time=12:00:00
 #SBATCH --account=m4477
 #SBATCH --mail-type=begin,end,fail
 #SBATCH --mail-user=mpatel26@thea.energy
@@ -41,7 +41,7 @@ export HDF5_USE_FILE_LOCKING=FALSE
 
 # 3. Paths
 HOME_DIR="/global/homes/m/mpatel26/"
-SCRATCH_DIR="/pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/"
+SCRATCH_DIR="/pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/ISHW/"
 
 # 1. Define internal variables from Slurm environment
 # NTASKS is the total number of MPI ranks (Nodes * ntasks-per-node)

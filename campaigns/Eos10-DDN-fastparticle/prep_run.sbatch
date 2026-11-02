@@ -53,3 +53,32 @@ set -eo pipefail
 srun -n "$SLURM_NTASKS" -c "$SLURM_CPUS_PER_TASK" --cpu-bind=cores --gpu-bind=single:1 \
      /global/homes/m/mpatel26/ascot5/ascot5_develop_mp_hpc_GPU/build/ascot5_main --in="$H5"
 echo "[run] done: $SIM"
+
+set +eo pipefail
+
+if [ ! -f "$H5" ]; then echo "ASCOT file not found: $H5"; exit 1; fi
+echo "[post] case $SLURM_ARRAY_TASK_ID: $SIM"
+module purge
+module load conda
+source "$(conda info --base)/etc/profile.d/conda.sh"
+cd /global/u2/m/mpatel26/alpha_analysis-mp
+export RUN_PLOSS_DIR=/global/homes/m/mpatel26/run_ploss
+POST="python -u post_ploss_figure.py --params=$PARAMS --out-dir=/global/u2/m/mpatel26/alpha_analysis-mp/campaigns/Eos10-DDN-fastparticle/post --fig-dir=/global/u2/m/mpatel26/alpha_analysis-mp/campaigns/Eos10-DDN-fastparticle/figures"
+
+echo "[post] step 1: P_loss + wall torpol if enabled (ascot-develop-mp)"
+conda activate ascot-develop-mp
+set -eo pipefail
+$POST ploss
+$POST wall
+set +eo pipefail
+conda deactivate
+
+echo "[post] step 2: trapped resonance + QA + figure (desc_trappedresonance)"
+module load cudatoolkit
+conda activate desc_trappedresonance
+export PMIX_MCA_psec="^munge"
+export OMPI_MCA_psec="^munge"
+export XLA_PYTHON_CLIENT_ALLOCATOR="platform"
+set -eo pipefail
+$POST figure
+echo "[post] done: /global/u2/m/mpatel26/alpha_analysis-mp/campaigns/Eos10-DDN-fastparticle/figures/$SIM.png"

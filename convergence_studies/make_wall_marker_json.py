@@ -27,9 +27,10 @@ Two modes:
                  marker is replicated k_i times (k_i = floor(N/n_lost) or +1,
                  the extras chosen at random), each copy carries weight
                  w_i/k_i, and each copy's position is displaced slightly
-                 (Gaussian in R, Z and arc length along phi; velocity is kept,
-                 with optional relative jitter of energy and pitch). All weights
-                 are then multiplied by one global factor so
+                 (Gaussian in R, Z and arc length along phi), and each copy gets
+                 a uniform random gyrophase (p_perp rotated about B, particle
+                 position moved around the guiding center). All weights are
+                 then multiplied by one global factor so
                      sum(w_new * E_new) == sum(w_lost * E_lost)
                  i.e. initial power of the new marker set == power that was
                  lost on the wall in the source run.
@@ -51,7 +52,6 @@ from a5py import Ascot
 
 EV = 1.602176634e-19
 EV_TO_MW = EV * 1e-6
-AMU = 1.66053906660e-27
 C = 299792458.0
 DEFAULT_H5 = ("/pscratch/sd/m/mpatel26/ascot_h5s/convergence_studies/"
               "G1600-free-reopt_I_LCFS-wall_1000k-mrk_biot-bfield_p01cellarea_"
@@ -68,11 +68,6 @@ parser.add_argument("--nmrk", type=int, default=None,
 parser.add_argument("--sigma-pos", type=float, default=0.005,
                     help="std of position displacement of copies in m (R, Z, "
                          "and arc length in phi). Default 5 mm.")
-parser.add_argument("--sigma-energy", type=float, default=0.0,
-                    help="relative std of energy jitter of copies")
-parser.add_argument("--sigma-pitch", type=float, default=0.0,
-                    help="std of pitch jitter of copies (pitch clipped to [-1,1]); "
-                         "pitch is taken w.r.t. B at the GC end position")
 parser.add_argument("--zero-time", action="store_true",
                     help="set marker start time to 0 instead of the wall-hit time")
 parser.add_argument("--no-shuffle", action="store_true",
@@ -91,11 +86,11 @@ if args.run is not None:
 # For GC end states getstate() itself builds the momentum/velocity vectors from
 # mu, ppar, B and the gyrophase zeta, so nothing is recomputed here except the
 # gyroradius offset of the particle position from the guiding center.
-fields = ["r", "phi", "z", "ekin", "pitch", "ppar", "pnorm", "pr", "pphi", "pz",
+fields = ["r", "phi", "z", "ekin", "pr", "pphi", "pz",
           "vr", "vphi", "vz", "br", "bphi", "bz",
           "weight", "mass", "charge", "anum", "znum", "time", "ids"]
-units = dict(r="m", phi="deg", z="m", ekin="eV", pitch="dimensionless",
-             ppar="kg*m/s", pnorm="kg*m/s", pr="kg*m/s", pphi="kg*m/s", pz="kg*m/s",
+units = dict(r="m", phi="deg", z="m", ekin="eV",
+             pr="kg*m/s", pphi="kg*m/s", pz="kg*m/s",
              vr="m/s", vphi="m/s", vz="m/s", br="T", bphi="T", bz="T",
              weight="1/s", mass="amu", charge="e", time="s")
 vals = a5.data.active.getstate(*fields, state="end", endcond=["wall"])
@@ -142,28 +137,24 @@ else:
     out = {key: v[idx].copy() for key, v in out.items()}
     out["weight"] = out["weight"] / k[idx]           # total weight conserved
 
-    # optional velocity jitter: energy rescales |p|; pitch keeps the perpendicular
-    # direction. Both relative to B at the GC end position.
-    if args.sigma_energy > 0 or args.sigma_pitch > 0:
-        Pc, bc, mk = P[:, idx], bhat[:, idx], m["mass"][idx] * AMU
-        pn, pitch = m["pnorm"][idx], m["pitch"][idx]
-        perp = Pc - m["ppar"][idx] * bc
-        perp_norm = np.linalg.norm(perp, axis=0)
-        if np.any(perp_norm == 0):
-            raise SystemExit("marker with zero perpendicular momentum; cannot jitter")
-        perp /= perp_norm
-        if args.sigma_energy > 0:
-            T = out["energy"] * (1 + rng.normal(0, args.sigma_energy, n))
-            if np.any(T <= 0):
-                raise SystemExit("energy jitter gave non-positive energy; reduce sigma")
-            out["energy"] = T
-            Tj = T * EV
-            pn = np.sqrt(Tj * (Tj + 2 * mk * C**2)) / C      # relativistic |p|
-        if args.sigma_pitch > 0:
-            pitch = np.clip(pitch + rng.normal(0, args.sigma_pitch, n), -1, 1)
-        Pc = pn * pitch * bc + pn * np.sqrt(1 - pitch**2) * perp
-        gamma = 1 + out["energy"] * EV / (mk * C**2)
-        out["vr"], out["vphi"], out["vz"] = Pc / (gamma * mk)
+    # random gyrophase: rotate v and p about b (B at the GC end position) by a uniform
+    # random angle. |v|, |p| and the parallel components are unchanged. The particle
+    # sits at GC + (b x p)/(qB), so its position moves around the gyro-circle.
+    alpha = rng.uniform(0, 2 * np.pi, n)
+    bhat_copy = bhat[:, idx]
+
+    def rotate_gyrophase(u):
+        upar = np.sum(u * bhat_copy, axis=0) * bhat_copy
+        uperp = u - upar
+        uperp_rotated = np.cos(alpha) * uperp + np.sin(alpha) * np.cross(bhat_copy.T, u.T).T
+        return upar + uperp_rotated
+
+    out["vr"], out["vphi"], out["vz"] = rotate_gyrophase(np.array([out["vr"], out["vphi"], out["vz"]]))
+    P_randomgyro = rotate_gyrophase(P[:, idx])
+    gyro_correction = np.cross(bhat_copy.T, P_randomgyro.T).T / (m["charge"][idx] * EV * Bn[idx])
+    out["r"] = m["r"][idx] + gyro_correction[0]
+    out["z"] = m["z"][idx] + gyro_correction[2]
+    out["phi"] = m["phi"][idx] + np.degrees(gyro_correction[1] / m["r"][idx])
 
     # position displacement
     out["r"] = out["r"] + rng.normal(0, args.sigma_pos, n)

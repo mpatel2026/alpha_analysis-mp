@@ -145,12 +145,13 @@ INPUT_DIR = "/pscratch/sd/m/mpatel26/ascot_h5s/Eos10-beams/"
 # file, relative to INPUT_DIR.
 CASES = {
     #"steadystate_00": "ascot_Eos_steadystate_00-RPZ.h5",
-    "BP3_broader": "ascot_Eos10_G2000_OP3ProfileBP3_12MWbroader.h5"
-    #"OP3Profile1":    "ascot_G2000_free_OP3Profile1.h5",
-    #"OP3Profile2":    "ascot_G2000_free_OP3Profile2.h5",
+    #"BP3_broader_floor_para": "ascot_Eos10_G2000_OP3ProfileBP3_12MWbroader_floor_para.h5",
+    "BP3_1p5xdensity":    "ascot_EosOP3LowDensity1p5x_P12MWbroader.h5",
+    #"BP3_1p75xdensity":    "ascot_EosOP3LowDensity1p75x_P12MWbroader.h5",
     #"OP3Profile3":    "ascot_G2000_free_OP3Profile3.h5",
 }
-DEFAULT_INPUT = INPUT_DIR + CASES["BP3_broader"]
+# First active case, so commenting entries in/out of CASES never breaks import.
+DEFAULT_INPUT = INPUT_DIR + next(iter(CASES.values()))
 # $HOME is GPFS and unreliable for large HDF5 writes -- matching the rest
 # of this repo's own convention (ascot_h5s/ etc. all live on pscratch,
 # never under alpha_analysis-mp/). The marker file itself is small (tens

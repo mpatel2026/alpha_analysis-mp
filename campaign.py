@@ -3,16 +3,17 @@
 
 One manifest (campaigns/<name>.json) describes a whole dataset: a recipe
 ("beam" or "fastparticle"), shared defaults, and a list of cases. This script
-expands it into per-case alphaprep params JSONs and two Slurm job arrays
-(prep -> run), chained so that run task i starts as soon as prep task i
-succeeds.
+expands it into per-case alphaprep params JSONs and chained Slurm job arrays
+(prep -> run -> post), so task i of each stage starts as soon as task i of the
+previous stage succeeds. post makes the P_loss / trapped resonance / QA figure
+(post_ploss_figure.py, wrapping ~/run_ploss steps 1-2).
 
     python3 campaign.py plan   campaigns/<name>.json   # expand + validate, no submit
-    python3 campaign.py submit campaigns/<name>.json   # plan, then sbatch prep+run
+    python3 campaign.py submit campaigns/<name>.json   # plan, then sbatch prep+run+post
     python3 campaign.py status campaigns/<name>.json   # h5 files + Slurm states
 
-Generated files go to campaigns/<name>/ (params/, cases.tsv, prep.sbatch,
-run.sbatch, logs/, jobs.jsonl). Stdlib only, runs on the login-node python3.
+Generated files go to campaigns/<name>/ (params/, cases.tsv, *.sbatch, logs/,
+post/, figures/, jobs.jsonl). Stdlib only, runs on the login-node python3.
 See campaigns/README.md for the manifest format.
 """
 import argparse
@@ -34,7 +35,12 @@ SITE = {
     "mail_type": "begin,end,fail",
     "conda_env": "ascot-develop-mp",
     "ascot_bin": "/global/homes/m/mpatel26/ascot5/ascot5_develop_mp_hpc_GPU/build/ascot5_main",
+    "post_conda_env": "desc_trappedresonance",
+    "run_ploss_dir": "/global/homes/m/mpatel26/run_ploss",
 }
+
+# Post-processing (P_loss + trapped resonance + QA figure) is the same for every recipe.
+POST_SLURM = {"qos": "shared", "gpus": 1, "ntasks": 1, "cpus-per-task": 32, "time": "00:02:30"}
 
 # Prep steps run from REPO_DIR, each prefixed with `srun -n 1 -c $SLURM_CPUS_PER_TASK`.
 # Available per-case shell variables: $SIM, $H5, $PARAMS, $MARKER.
@@ -52,7 +58,8 @@ RECIPES = {
             "prep": {"qos": "shared", "gpus": 1, "ntasks": 1, "cpus-per-task": 32,
                      "time": "00:30:00"},
             "run": {"qos": "regular", "nodes": 2, "ntasks-per-node": 4,
-                    "gpus-per-node": 4, "cpus-per-task": 1, "time": "48:00:00"},
+                    "gpus-per-node": 4, "cpus-per-task": 1, "time": "30:00:00"},
+            "post": dict(POST_SLURM),
         },
     },
     "fastparticle": {
@@ -72,9 +79,18 @@ RECIPES = {
                     "time": "01:30:00"},
             "prep_run": {"qos": "shared", "gpus": 1, "ntasks": 1, "cpus-per-task": 32,
                          "time": "01:30:00"},
+            "post": dict(POST_SLURM),
         },
-        # prep and run need the same 1 GPU, so do both in one job (one queue wait)
+        # prep, run and post all need the same 1 GPU: one job (prep_run.sbatch), one queue wait
         "combine": True,
+    },
+    # Post-processing only, for simulations that already exist in out_dir.
+    "post": {
+        "params": {"wall_torpol": True},
+        "prep_steps": [],
+        "required": ["{out_dir}{sim_name}.h5", "{inp_dir}{equil_file}"],
+        # P_loss + wall torpol + DESC metrics: ~2-3 min, so more than the in-pipeline default
+        "slurm": {"post": dict(POST_SLURM, time="00:05:00")},
     },
 }
 
@@ -110,6 +126,11 @@ set +eo pipefail
 conda deactivate
 """
 
+# Between run and post in a combined job (POST_BODY sets up its own modules/envs).
+RUN_TO_POST = """
+set +eo pipefail
+"""
+
 RUN_BODY = """
 if [ ! -f "$H5" ]; then echo "Input file not found: $H5"; exit 1; fi
 echo "[run] case $SLURM_ARRAY_TASK_ID: $SIM -> $H5"
@@ -134,12 +155,44 @@ srun -n "$SLURM_NTASKS" -c "$SLURM_CPUS_PER_TASK" --cpu-bind=cores --gpu-bind=si
 echo "[run] done: $SIM"
 """
 
-# Job scripts written per campaign: stage -> body blocks. "prep_run" does both
-# in one allocation; used by `submit` for recipes with "combine": True.
+# P_loss in the ASCOT env, then f_trapped / fB error + figure in the DESC env
+# (python run directly, not via srun, as in run_ploss/step2_desc_metrics.job).
+POST_BODY = """
+if [ ! -f "$H5" ]; then echo "ASCOT file not found: $H5"; exit 1; fi
+echo "[post] case $SLURM_ARRAY_TASK_ID: $SIM"
+module purge
+module load conda
+source "$(conda info --base)/etc/profile.d/conda.sh"
+cd {repo_dir}
+export RUN_PLOSS_DIR={run_ploss_dir}
+POST="python -u post_ploss_figure.py --params=$PARAMS --out-dir={camp_dir}/post --fig-dir={camp_dir}/figures"
+
+echo "[post] step 1: P_loss + wall torpol if enabled ({conda_env})"
+conda activate {conda_env}
+set -eo pipefail
+$POST ploss
+$POST wall
+set +eo pipefail
+conda deactivate
+
+echo "[post] step 2: trapped resonance + QA + figure ({post_conda_env})"
+module load cudatoolkit
+conda activate {post_conda_env}
+export PMIX_MCA_psec="^munge"
+export OMPI_MCA_psec="^munge"
+export XLA_PYTHON_CLIENT_ALLOCATOR="platform"
+set -eo pipefail
+$POST figure
+echo "[post] done: {camp_dir}/figures/$SIM.png"
+"""
+
+# Job scripts written per campaign: stage -> body blocks. "prep_run" does prep,
+# run and post in one allocation; used by `submit` for recipes with "combine": True.
 STAGE_BODIES = {
     "prep": [PREP_BODY],
     "run": [RUN_BODY],
-    "prep_run": [PREP_BODY, PREP_TO_RUN, RUN_BODY],
+    "prep_run": [PREP_BODY, PREP_TO_RUN, RUN_BODY, RUN_TO_POST, POST_BODY],
+    "post": [POST_BODY],
 }
 
 
@@ -262,7 +315,7 @@ def sbatch_directives(res, site):
 
 
 def write_plan(manifest_path, m, recipe, site, name, camp_dir, cases):
-    for sub in ("params", "logs"):
+    for sub in ("params", "logs", "post", "figures"):
         os.makedirs(os.path.join(camp_dir, sub), exist_ok=True)
     rows = []
     for c in cases:
@@ -339,7 +392,7 @@ def cmd_plan(args, quiet=False):
     if not quiet:
         print("campaign %s  (recipe: %s, %d cases)" % (name, m["recipe"], len(cases)))
         print_table(cases)
-        print("wrote %s/{params/, cases.tsv, prep.sbatch, run.sbatch}" %
+        print("wrote %s/{params/, cases.tsv, *.sbatch}" %
               os.path.relpath(camp_dir))
         n_err = sum(bool(c["_errors"]) for c in cases)
         if n_err:
@@ -350,14 +403,22 @@ def cmd_plan(args, quiet=False):
 def cmd_submit(args):
     m, recipe, name, camp_dir, cases = cmd_plan(args, quiet=True)
     stages = args.stages.split(",")
-    if not set(stages) <= {"prep", "run"}:
-        die("--stages must be prep, run, or prep,run")
+    if not set(stages) <= {"prep", "run", "post"}:
+        die("--stages must be a comma list of prep, run, post")
+    available = set(recipe["slurm"]) | ({"prep", "run"} if "prep_run" in recipe["slurm"] else set())
+    stages = [s for s in stages if s in available]
+    if not stages:
+        die("recipe %r has none of the requested stages (has: %s)"
+            % (m["recipe"], ", ".join(sorted(available))))
     indices = parse_indices(args.cases, len(cases))
     sel = [cases[i - 1] for i in indices]
 
     problems = [c for c in sel if c["_errors"]]
-    if "prep" not in stages:  # run-only: inputs must already exist, nothing else needed
+    if "prep" not in stages:  # run/post only: inputs must already exist
         problems = [c for c in sel if not os.path.exists(c["_h5"])]
+        if "post" in stages:
+            problems += [c for c in sel if c not in problems
+                         and not os.path.exists(c["inp_dir"] + c["equil_file"])]
     if problems:
         print_table(cases, {cases.index(c) + 1 for c in problems})
         die("%d selected case(s) not ready (see above)" % len(problems))
@@ -368,9 +429,11 @@ def cmd_submit(args):
             print_table(cases, set(existing))
 
     spec = array_spec(indices)
-    jobs = [s for s in ("prep", "run") if s in stages]
-    if recipe.get("combine") and len(jobs) == 2:
-        jobs = ["prep_run"]
+    jobs = [s for s in ("prep", "run", "post") if s in stages]
+    covers = {s: [s] for s in jobs}
+    if recipe.get("combine") and jobs[:2] == ["prep", "run"]:
+        jobs = ["prep_run"]  # includes post
+        covers = {"prep_run": ["prep", "run", "post"]}
     print("campaign %s: submitting %s for cases %s" % (name, " -> ".join(jobs), spec))
     prev = None
     for stage in jobs:
@@ -392,7 +455,8 @@ def cmd_submit(args):
         print("    -> job %s" % jobid)
         with open(os.path.join(camp_dir, "jobs.jsonl"), "a") as f:
             f.write(json.dumps({"time": datetime.datetime.now().isoformat(timespec="seconds"),
-                                "stage": stage, "jobid": jobid, "cases": indices}) + "\n")
+                                "stage": stage, "covers": covers[stage], "jobid": jobid,
+                                "cases": indices}) + "\n")
         prev = jobid
 
 
@@ -431,7 +495,7 @@ def cmd_status(args):
         with open(jobs_path) as f:
             for line in f:
                 rec = json.loads(line)
-                for stage in rec["stage"].split("_"):
+                for stage in rec.get("covers", rec["stage"].split("_")):
                     for i in rec["cases"]:
                         latest[(stage, i)] = rec["jobid"]
     states = sacct_states(sorted(set(latest.values())))
@@ -439,7 +503,7 @@ def cmd_status(args):
     def info(i, c):
         h5 = c["_h5"]
         out = ["%5.0f MB" % (os.path.getsize(h5) / 1e6) if os.path.exists(h5) else "   no h5"]
-        for stage in ("prep", "run"):
+        for stage in ("prep", "run", "post"):
             jid = latest.get((stage, i))
             out.append("%s %-10s" % (stage, states.get((jid, i), "?") if jid else "-"))
         return "  ".join(out)
@@ -456,8 +520,8 @@ def main():
         p = sub.add_parser(cmd)
         p.add_argument("manifest", help="campaign manifest JSON (campaigns/<name>.json)")
         if cmd == "submit":
-            p.add_argument("--stages", default="prep,run",
-                           help="prep, run, or prep,run (default)")
+            p.add_argument("--stages", default="prep,run,post",
+                           help="comma list of prep, run, post (default: all three)")
             p.add_argument("--cases", help="1-based case indices, e.g. 1-3,7 (default all)")
             p.add_argument("--dry-run", action="store_true",
                            help="validate with sbatch --test-only, submit nothing")
